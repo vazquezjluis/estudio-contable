@@ -149,7 +149,7 @@
 						
 					<td ><span class="pull-right">
 						<a href="#" class='btn btn-default btn-xs' title='Movimientos' onclick="movimientos('<?php echo $id_cliente;?>');" data-toggle="modal" data-target="#myModal3"><i class="glyphicon glyphicon-list"></i> Movimientos</a> 
-						<a href="#" class='btn btn-default btn-xs' title='Documentos'  data-toggle="modal" data-target="#myModal4"><i class="glyphicon glyphicon-cloud-upload"></i> Movimientos</a> 
+						<a href="#" class='btn btn-default btn-xs' title='Documentos'  data-toggle="modal" data-target="#nuevoDocumento"><i class="glyphicon glyphicon-cloud-upload"></i> Documentos</a> 
 						<a href="#" class='btn btn-default btn-xs' title='Editar cliente' onclick="obtener_datos('<?php echo $id_cliente;?>');" data-toggle="modal" data-target="#myModal2"><i class="glyphicon glyphicon-edit"></i></a> 
 						<a href="#" class='btn btn-default btn-xs' title='Borrar cliente' onclick="eliminar('<?php echo $id_cliente; ?>')"><i class="glyphicon glyphicon-trash"></i></a></span> 
 					</td>

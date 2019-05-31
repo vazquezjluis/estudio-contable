@@ -44,6 +44,7 @@
 					include("modal/clientes/registro_clientes.php");
 					include("modal/clientes/editar_clientes.php");
 					include("modal/clientes/movimiento_cliente.php");
+					include("modal/clientes/documentos.php");
 				?>
 				<form class="form-horizontal" role="form" id="datos_cotizacion">				
 							<div class="form-group row">
