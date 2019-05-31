@@ -13,10 +13,12 @@ require_once("config/db.php");
 
 // load the login class
 require_once("classes/Login.php");
+require_once("classes/LoginCliente.php");
 
 // create a login object. when this object is created, it will do all login/logout stuff automatically
 // so this single line handles the entire login process. in consequence, you can simply ...
 $login = new Login();
+$loginCliente = new LoginCliente();
 
 // ... ask if we are logged in here:
 if ($login->isUserLoggedIn() == true) {
@@ -24,7 +26,9 @@ if ($login->isUserLoggedIn() == true) {
     // for demonstration purposes, we simply show the "you are logged in" view.
    header("location: clientes.php");
 
-} else {
+}elseif($loginCliente->isUserLoggedInCliente() == true) 
+	header("location: public/index.php");
+else {
     // the user is not logged in. you can do whatever you want here.
     // for demonstration purposes, we simply show the "you are not logged in" view.
     ?>

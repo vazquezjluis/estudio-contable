@@ -17,7 +17,7 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-6">
-                        <table id="tabla_1"  class="table table-bordered table-condenced table-hover">
+                        <table id="tabla_1"  class="table table-bordered table-condensed table-hover">
                             <thead>
                                 <tr><th colspan="2">Monto Facturado</th></tr>
                                 <tr>
@@ -85,7 +85,7 @@
                         </table>
                     </div>
                     <div class="col-md-6">
-                    <table style="background-color:#ffc1071c" class="table table-bordered table-condenced table-hover">
+                    <table style="background-color:#ffc1071c" class="table table-bordered table-condensed table-hover">
                             <thead>
                                 <tr><th colspan="2">Gastos</th></tr>
                                 <tr>

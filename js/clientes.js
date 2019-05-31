@@ -85,10 +85,19 @@
 		 * Para mostrar o no mostrar la categoria
 		 */
 		$("select").change(function(event) {
-		    if ($(this).val() == "Monotributo") {
-		        $("#categoria_div").show();
+		    var prefijo = "";
+		    if ($(this).attr("id") === "condicion") {
+		        //cuando es creadion de cliente
 		    } else {
-		        $("#categoria_div").hide();
+		        prefijo = "mod_"; //cuando es modificacion
+		    }
+		    if ($(this).val() == "Monotributo") {
+		        $("#" + prefijo + "categoria").removeAttr("readonly");
+		        $("#" + prefijo + "categoria").attr("required");
+		        $("#" + prefijo + "categoria").val("");
+		    } else {
+		        $("#" + prefijo + "categoria").attr("readonly", "readonly");
+		        $("#" + prefijo + "categoria").val("");
 		    };
 		});
 
@@ -112,7 +121,6 @@
 		    $("#mod_direccion").val(direccion_cliente);
 		    $("#mod_estado").val(status_cliente);
 		    $("#mod_cuit").val(cuit);
-
 		    $("#mod_date_added").val(date_added);
 		    $("#mod_honorarios").val(honorarios);
 		    $("#mod_usuario").val(usuario);
@@ -123,9 +131,9 @@
 		    if (condicion_iva === 'Monotributo') {
 		        $("#mod_categoria").val(categoria);
 		    } else {
-		        $("#categoria_div").replaceWith('<input type="hidden" name="mod_categoria" id="mod_categoria" value=" " />');
+		        $("#mod_categoria").attr("readonly", "readonly");
+		        $("#mod_categoria").val(" ");
 		    }
-		    console.log(condicion_iva)
 
 		}
 
@@ -174,7 +182,6 @@
 		                            parseFloat(item.octubre) +
 		                            parseFloat(item.noviembre) +
 		                            parseFloat(item.diciembre));
-		                    console.log(mf_total);
 		                    $("#mf_total").text(String(mf_total.toFixed(2)));
 		                } else {
 		                    $("#g_enero").text(item.enero);
@@ -205,12 +212,14 @@
 		                            parseFloat(item.octubre) +
 		                            parseFloat(item.noviembre) +
 		                            parseFloat(item.diciembre));
-		                    console.log(g_total);
 		                    $("#g_total").text(String(g_total.toFixed(2)));
 
 		                }
 		            });
-		            var total_general = (g_total + mf_total)
+		            var total_general = (parseFloat(mf_total) - parseFloat(g_total));
+
+		            console.log(g_total);
+
 		            $("#total_general").text(String(total_general));
 		        }
 		    });
