@@ -46,7 +46,7 @@ else {
 <body>
  <div class="container">
         <div class="card card-container">
-		<h3>Estudio contable</h3>
+		<h3 style="text-align:center; font-family:fantasy;"><i>Schumacher</i></h3>
             <img id="profile-img" class="profile-img-card" src="img/avatar_2x.png" />
             <p id="profile-name" class="profile-name-card"></p>
             <form method="post" accept-charset="utf-8" action="login.php" name="loginform" autocomplete="off" role="form" class="form-signin">
