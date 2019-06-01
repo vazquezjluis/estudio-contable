@@ -68,7 +68,7 @@ class LoginCliente
 
                 // database query, getting all the info of the selected user (allows login via email address in the
                 // username field)
-                $sql = "SELECT id_cliente, nombre_cliente, usuario, clave
+                $sql = "SELECT id_cliente, nombre_cliente, usuario, clave, categoria, condicion_iva
                         FROM clientes
                         WHERE usuario = '" . $user_name . "' ;";
                         
@@ -87,9 +87,11 @@ class LoginCliente
                     if ($_POST['user_password']== $result_row->clave) {
 
                         // write user data into PHP SESSION (a file on your server)
-                        $_SESSION['cliente_id'] = $result_row->id_cliente;
-						$_SESSION['cliente_name'] = $result_row->nombre_cliente;
-                        $_SESSION['cliente_login_status'] = 1;
+                        $_SESSION['cliente_id']             = $result_row->id_cliente;
+						$_SESSION['cliente_name']           = $result_row->nombre_cliente;
+						$_SESSION['cliente_categoria']      = $result_row->categoria;
+						$_SESSION['cliente_condicion_iva']  = $result_row->condicion_iva;
+                        $_SESSION['cliente_login_status']   = 1;
 
                     } else {
                         $this->errors[] = "Usuario y/o contraseña no coinciden.";

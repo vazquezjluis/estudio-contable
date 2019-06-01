@@ -18,13 +18,49 @@
 	$active_productos="";
 	$active_clientes="active";
 	$active_usuarios="";
-	$title="Clientes | Estudio Contable";
+  $title="Clientes | Estudio Contable";
+  
+  /** Obtengo los datos de la categoria del cliente */
+$monto_a_pagar= 0;  
+if(isset($_SESSION['cliente_condicion_iva']) and $_SESSION['cliente_condicion_iva']=="Monotributo" ){
+  $sql = "SELECT * FROM categorias WHERE categoria = 'A'";
+  $query=mysqli_query($con, $sql);
+  $row= mysqli_fetch_array($query);
+  
+  $monto_a_pagar = $row['ingresos_brutos'];
+}
+
+$sql_movimientos = " SELECT
+enero+febrero+marzo+abril+mayo+
+junio+julio+agosto+septiembre+
+octubre+noviembre+diciembre as Fac_actual
+FROM
+movimientos
+WHERE
+cliente = ".$_SESSION['cliente_id']."
+AND movimiento = 'ingresos'";
+
+$query=mysqli_query($con, $sql_movimientos);
+$row= mysqli_fetch_array($query);
+
+$facturacion_actual = $row['Fac_actual'];
+
+
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<?php include("../head.php");?>
+<meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+  <title><?php echo $title;?></title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+	
+	<link rel="stylesheet" href="../css/custom.css">
+	<link rel="stylesheet" href="../css/style.css">
+	<link rel=icon href='../img/logo-icon.png' sizes="32x32" type="image/png">
 </head>
 <body>
 
@@ -51,51 +87,68 @@
   </div><!-- /.container-fluid -->
 </nav>
 <div class="container">
-    <div class="jumbotron">
-        <h2>Bienvenido, <?php echo $_SESSION['cliente_name'];?></h2>
-        <h5>A continuación el detalle de su estado de cuenta.</h5>
+    <div class="jumbotron" style="padding-top:0px;">
         <div class="row">
           <div class="col-md-12">
             <!-- <div class="alert alert-danger" role="alert"><strong>Urgente!</strong> Por favor comuniquese con el contador (pero tené cuidado porque es estafador!)</div> -->
+            <div class="row">
+                  <div class="col-md-6" style="text-align:center">
+                    <h1 style="font-family:Arial;font-size:2.5em;"><?php echo strToUpper($_SESSION['cliente_name']);?></h1>
+                    <?php 
+                      if ($_SESSION['cliente_condicion_iva']=="Monotributo"){ ?>
+                          <div class="letraCliente"><?php echo $_SESSION['cliente_categoria']?></div>
+                    <?php  }
+                    ?>
+                    
+                  </div>
+                  
+                </div>  
           </div>
           <div class="col-md-6">
-              <ul class="list-group">
-
-                <li class="list-group-item">
-                    <span class="badge">$ 14777</span>
-                    Monto a pagar <? echo "categoria A" ;?>
+              <ul class="list-group" style="margin-bottom:5px;">
+                
+              
+                <li class="list-group-item " style="padding:1%;">
+                    <span class="badge">$ <?php echo $monto_a_pagar;?></span>
+                    Monto a pagar
                 </li>
-                <li class="list-group-item">
-                    <span class="badge">$ 10000</span>
+                <li class="list-group-item " style="padding:1%;">
+                    <span class="badge">$ <?php echo $facturacion_actual;?></span>
                     Facturacion Actual
                 </li>
-                <li class="list-group-item">
+                <li class="list-group-item sm " style="padding:1%;">
                     <span class="badge">$ 14000</span>
                     Monto a facturar por mes
                 </li>
-                <li class="list-group-item">
+                <li class="list-group-item " style="padding:1%;">
                     <span class="badge">$ 14000</span>
                     Monto a pagar siguiente Categoria
                 </li>
-                <li class="list-group-item">
-                  <div class="row">
-                    <div class="col-md-6">Constancias / Documentos</div>
-                    <div class="col-md-6">
+                <li class="list-group-item" style="padding:1%;">
+                  <div class="row" style="text-align:center;">
+                    <h3 style="margin-top:0px;margin-bottom:0px;">Constancias</h3>
+                  </div>  
+                    
                       <ul>
-                        <li><a href="#"> Form. 960 </a></li>
-                        <li><a href="#"> Inscripcion de AFIP </a></li>
-                        <li><a href="#"> Inscripcion de IIBB </a></li>
-                        <li><a href="#"> Credencial de pago </a></li>
+                        <li><a href="#"> Form. 960 <span class="glyphicon glyphicon-download-alt"></span></a></li>
+                        <li><a href="#"> Inscripcion de AFIP <span class="glyphicon glyphicon-download-alt"></span></a></li>
+                        <li><a href="#"> Inscripcion de IIBB <span class="glyphicon glyphicon-download-alt"></span></a></li>
+                        <li><a href="#"> Credencial de pago <span class="glyphicon glyphicon-download-alt"></span></a></li>
                       </ul>
-                    </div>
-                  </div>
-
-
                 </li>
             </ul>
-            <h4><div class="alert alert-info" >Honararios $1500</div></h4>
+            <button type="button" style="margin-top:" name="" id="" class="btn btn-primary btn-sm btn-block">
+              Liquidacion mensual de Ingresos Brutos
+            </button>
+            <h4>Honararios $1500</h4>
           </div>
           <div class="col-md-6">
+            <div class="row">
+                  <div class="col-md-12" style="text-align:center">
+                    <!-- <h1 style="font-family:Arial;font-size:3em;"><?php // echo strToUpper($_SESSION['cliente_name']);?></h1>
+                    <div class="letraCliente">A</div> -->
+                  </div>
+            </div>  
             <div class="well" style="background-color:#ffff">
             <h5><i><b>Enviar un mensaje al contador </b></i><span class="glyphicon glyphicon-send"></span></h5>
               <form>
