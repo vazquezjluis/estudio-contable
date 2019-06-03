@@ -9,14 +9,10 @@
 			/* Connect To Database*/
 			require_once ("../../config/db.php");//Contiene las variables de configuracion para conectar a la base de datos
 			require_once ("../../config/conexion.php");//Contiene funcion que conecta a la base de datos
-			
-			$sql="SELECT * FROM movimientos WHERE cliente = ".$_GET['id']." AND anio = YEAR(NOW())";
-			$query=mysqli_query($con,$sql);		
-			
-			while($row=mysqli_fetch_assoc($query)){
-				$r[]=$row;
-			}
-			echo json_encode($r);
+			require_once ("../../funciones.php");
+			/* Esta funcion obtiene todos los datos del movimiento del cliente, incluido los totales */ 
+			$datos = getFacturacionActual($_GET['id']);
+			echo json_encode($datos);
 		}
 
 		break;
@@ -24,8 +20,11 @@
 			if (empty($_GET['id'])) {
 				$errors[] = "ID vacío";
 			} 
-			else if (!empty($_GET['id']) && !empty($_GET['name']) && !empty($_GET['valor']))
+			else if (!empty($_GET['id']) && !empty($_GET['name']) )
 			{
+				if (empty($_GET['valor'])){
+					$_GET['valor'] = 0;
+				}
 				/* Connect To Database*/
 				require_once ("../../config/db.php");//Contiene las variables de configuracion para conectar a la base de datos
 				require_once ("../../config/conexion.php");//Contiene funcion que conecta a la base de datos
@@ -35,12 +34,16 @@
 				$valor = str_replace(",", ".", $_GET['valor']);// valor 150.5 se cambia las comas por puntos
 				$movimiento = ($td_name[0]=='mf')? 'ingresos' :	'egresos';
 				$mes = strtolower($td_name[1]);
+				$anio = strtolower($td_name[2]);
 		
-				$sql = " UPDATE movimientos SET ".$mes." = ".$valor." WHERE cliente = ".$id_cliente." AND anio=YEAR(NOW())  AND movimiento = '".$movimiento."'";
+				$sql = " UPDATE movimientos SET ".$mes." = ".$valor." WHERE cliente = ".$id_cliente." AND anio=".$anio."  AND movimiento = '".$movimiento."'";
 				
 				$query_update = mysqli_query($con,$sql);
 				if ($query_update){
+
 					$messages[] = "guardado.";
+					
+
 				} else{
 					$errors []= "Ocurrio un error al intentar guardar el movimiento. ".mysqli_error($con);
 				}
@@ -55,13 +58,13 @@
 				}
 			}
  
-	 if (isset($messages)){
-		 foreach ($messages as $message) {
-			 $request.= $message;
-		 }
-	 }
+			if (isset($messages)){
+				foreach ($messages as $message) {
+					$request.= $message;
+				}
+			}
  
-	 echo $request;
+	 		echo $request;
 		break;
 		 
 	}

@@ -57,21 +57,21 @@
 			  </div>
 
 			  <div class="form-group form-group-sm">
-					<label for="honorario" class="col-sm-3 control-label">Honorarios $</label>
+					<label for="honorario" class="col-sm-3 control-label">Honorarios $ *</label>
 					<div class="col-sm-8">
-						<input type="text" class="form-control" id="honorario" name="honorario"  >
+						<input type="text" class="form-control" id="honorario" name="honorario"  required>
 					</div>
 			  </div>
 
 			  <div class="form-group form-group-sm">
-					<label for="usuario" class="col-sm-3 control-label">Usuario</label>
+					<label for="usuario" class="col-sm-3 control-label">Usuario *</label>
 					<div class="col-sm-8">
 						<input type="text" class="form-control" id="usuario" name="usuario"  required>
 					</div>
 			  </div>
 
 			  <div class="form-group form-group-sm">
-					<label for="clave" class="col-sm-3 control-label">Clave</label>
+					<label for="clave" class="col-sm-3 control-label">Clave *</label>
 					<div class="col-sm-8">
 						<input type="text" class="form-control" id="clave" name="clave"  required>
 					</div>

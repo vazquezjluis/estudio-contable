@@ -1,6 +1,14 @@
 <?php
 		if (isset($con))
 		{
+
+            $meses = array('enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre');
+            $periodo = array(
+                (string)(date('Y')-1)   =>$meses,
+                (string)date('Y')       =>$meses
+                
+            );
+            
 	?>
 	<!-- Modal -->
 	<div class="modal fade" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -16,7 +24,9 @@
 		  <div class="modal-body">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-6  table-responsive"  >
+                        
+                    
                         <table id="tabla_1"  class="table table-bordered table-condensed table-hover">
                             <thead>
                                 <tr><th colspan="2">Monto Facturado</th></tr>
@@ -26,55 +36,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>Enero</td>
-                                    <td id="mf_enero" contenteditable="true"></td>
-                                </tr>
-                                <tr>
-                                    <td>Febrero</td>
-                                    <td id="mf_febrero" contenteditable="true"></td>
-                                </tr>
-                                <tr>
-                                    <td>Marzo</td>
-                                    <td id="mf_marzo" contenteditable="true"></td>
-                                </tr>
-                                <tr>
-                                    <td>Abril</td>
-                                    <td id="mf_abril" contenteditable="true"></td>
-                                </tr>
-                                <tr>
-                                    <td>Mayo</td>
-                                    <td id="mf_mayo" contenteditable="true"></td>
-                                </tr>
-                                <tr>
-                                    <td>Junio</td>
-                                    <td id="mf_junio" contenteditable="true"></td>
-                                </tr>
-                                <tr>
-                                    <td>Julio</td>
-                                    <td id="mf_julio" contenteditable="true"></td>
-                                </tr>
-                                <tr>
-                                    <td>Agosto</td>
-                                    <td id="mf_agosto" contenteditable="true"></td>
-                                </tr>
-                                <tr>
-                                    <td>Septiembre</td>
-                                    <td id="mf_septiembre" contenteditable="true"></td>
-                                </tr>
-                                <tr>
-                                    <td>Octubre</td>
-                                    <td id="mf_octubre" contenteditable="true"></td>
-                                </tr>
-                                <tr>
-                                    <td>Noviembre</td>
-                                    <td id="mf_noviembre" contenteditable="true"></td>
-                                </tr>
-                                <tr>
-                                    <td>Diciembre</td>
-                                    <td id="mf_diciembre" contenteditable="true"></td>
-                                </tr>
-                               
+                                <tr id="mf_"></tr>
                             </tbody>
                             <thead>
                                 <tr>
@@ -83,8 +45,9 @@
                                 </tr>
                             </thead>
                         </table>
+                        
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-6 table-responsive" >
                     <table style="background-color:#ffc1071c" class="table table-bordered table-condensed table-hover">
                             <thead>
                                 <tr><th colspan="2">Gastos</th></tr>
@@ -94,55 +57,8 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>Enero</td>
-                                    <td id="g_enero" contenteditable="true"></td>
-                                </tr>
-                                <tr>
-                                    <td>Febrero</td>
-                                    <td id="g_febrero" contenteditable="true"></td>
-                                </tr>
-                                <tr>
-                                    <td>Marzo</td>
-                                    <td id='g_marzo' contenteditable="true"></td>
-                                </tr>
-                                <tr>
-                                    <td>Abril</td>
-                                    <td id="g_abril" contenteditable="true"></td>
-                                </tr>
-                                <tr>
-                                    <td>Mayo</td>
-                                    <td id="g_mayo" contenteditable="true"></td>
-                                </tr>
-                                <tr>
-                                    <td>Junio</td>
-                                    <td  id="g_junio"contenteditable="true"></td>
-                                </tr>
-                                <tr>
-                                    <td>Julio</td>
-                                    <td id="g_julio" contenteditable="true"></td>
-                                </tr>
-                                <tr>
-                                    <td>Agosto</td>
-                                    <td id="g_agosto" contenteditable="true"></td>
-                                </tr>
-                                <tr>
-                                    <td>Septiembre</td>
-                                    <td id="g_septiembre" contenteditable="true"></td>
-                                </tr>
-                                <tr>
-                                    <td>Octubre</td>
-                                    <td id="g_octubre" contenteditable="true"></td>
-                                </tr>
-                                <tr>
-                                    <td>Noviembre</td>
-                                    <td id="g_noviembre" contenteditable="true"></td>
-                                </tr>
-                                <tr>
-                                    <td>Diciembre</td>
-                                    <td id="g_diciembre"  contenteditable="true"></td>
-                                </tr>
-                               
+                                <tr id="g_"></tr>
+                                
                             </tbody>
                             <thead>
                                 <tr>

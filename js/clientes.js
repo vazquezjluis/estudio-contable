@@ -1,5 +1,6 @@
 		$(document).ready(function() {
 		    load(1);
+
 		});
 
 		function load(page) {
@@ -143,6 +144,8 @@
 		 * Carga los movimientos del Cliente 
 		 */
 		function movimientos(id) {
+
+		    //var mes = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto'];
 		    var nombre_cliente = $("#nombre_cliente" + id).val();
 		    $("#modal_nombre").text(nombre_cliente);
 		    $("#id_cliente").val(id);
@@ -154,73 +157,42 @@
 		            //$("#resultados_ajax").html("Mensaje: Cargando...");
 		        },
 		        success: function(data) {
-		            $.each(data, function(i, item) {
-		                if (item.movimiento === 'ingresos') {
-		                    $("#mf_enero").text(item.enero);
-		                    $("#mf_febrero").text(item.febrero);
-		                    $("#mf_marzo").text(item.marzo);
-		                    $("#mf_abril").text(item.abril);
-		                    $("#mf_mayo").text(item.mayo);
-		                    $("#mf_junio").text(item.junio);
-		                    $("#mf_julio").text(item.julio);
-		                    $("#mf_agosto").text(item.agosto);
-		                    $("#mf_septiembre").text(item.septiembre);
-		                    $("#mf_octubre").text(item.octubre);
-		                    $("#mf_noviembre").text(item.noviembre);
-		                    $("#mf_diciembre").text(item.diciembre);
-		                    var mf_total =
 
-		                        (parseFloat(item.enero) +
-		                            parseFloat(item.febrero) +
-		                            parseFloat(item.marzo) +
-		                            parseFloat(item.abril) +
-		                            parseFloat(item.mayo) +
-		                            parseFloat(item.junio) +
-		                            parseFloat(item.julio) +
-		                            parseFloat(item.agosto) +
-		                            parseFloat(item.septiembre) +
-		                            parseFloat(item.octubre) +
-		                            parseFloat(item.noviembre) +
-		                            parseFloat(item.diciembre));
-		                    $("#mf_total").text(String(mf_total.toFixed(2)));
-		                } else {
-		                    $("#g_enero").text(item.enero);
-		                    $("#g_febrero").text(item.febrero);
-		                    $("#g_marzo").text(item.marzo);
-		                    $("#g_abril").text(item.abril);
-		                    $("#g_mayo").text(item.mayo);
-		                    $("#g_junio").text(item.junio);
-		                    $("#g_julio").text(item.julio);
-		                    $("#g_agosto").text(item.agosto);
-		                    $("#g_septiembre").text(item.septiembre);
-		                    $("#g_octubre").text(item.octubre);
-		                    $("#g_noviembre").text(item.noviembre);
-		                    $("#g_diciembre").text(item.diciembre);
+		            // Obteniendo todas las claves del JSON
+		            var tr_gastos = "";
+		            var tr_facturado = "";
+		            for (var clave in data) {
+		                if (data.hasOwnProperty(clave)) {
+		                    let valor = data[clave];
 
+		                    if (valor.movimiento === "ingresos") { //Ingresos
+		                        for (let key in valor) {
+		                            if (valor.hasOwnProperty(key)) {
+		                                if (key != "movimiento" && key != "anio") {
+		                                    tr_facturado += "<tr><td>" + key + "-" + valor.anio + "</td><td id='mf_" + key + "_" + valor.anio + "'   contenteditable='true' onfocusout=\"upData('mf_" + String(key) + "_" + String(valor.anio) + "',this)\" >" + valor[key] + "</td></tr>";
+		                                }
+		                            }
+		                            //console.log("La clave es " + key + " y el valor es " + valor[key]);
+		                        }
+		                    } else if (valor.movimiento === "egresos") { //Egresos
 
-		                    var g_total =
+		                        for (let key in valor) {
+		                            if (valor.hasOwnProperty(key)) {
+		                                if (key != "movimiento" && key != "anio") {
+		                                    tr_gastos += "<tr><td>" + key + "-" + valor.anio + "</td><td id='g_" + key + "_" + valor.anio + "'   contenteditable='true' onfocusout=\"upData('g_" + String(key) + "_" + String(valor.anio) + "',this)\" >" + valor[key] + "</td></tr>";
+		                                }
+		                            }
+		                            //console.log("La clave es " + key + " y el valor es " + valor[key]);
+		                        }
 
-		                        (parseFloat(item.enero) +
-		                            parseFloat(item.febrero) +
-		                            parseFloat(item.marzo) +
-		                            parseFloat(item.abril) +
-		                            parseFloat(item.mayo) +
-		                            parseFloat(item.junio) +
-		                            parseFloat(item.julio) +
-		                            parseFloat(item.agosto) +
-		                            parseFloat(item.septiembre) +
-		                            parseFloat(item.octubre) +
-		                            parseFloat(item.noviembre) +
-		                            parseFloat(item.diciembre));
-		                    $("#g_total").text(String(g_total.toFixed(2)));
-
+		                    }
+		                    $("#mf_total").text(valor['total_ingreso']);;
+		                    $("#g_total").text(valor['total_egreso']);;
 		                }
-		            });
-		            var total_general = (parseFloat(mf_total) - parseFloat(g_total));
+		            }
+		            $("#g_").replaceWith(tr_gastos);
+		            $("#mf_").replaceWith(tr_facturado);
 
-		            console.log(g_total);
-
-		            $("#total_general").text(String(total_general));
 		        }
 		    });
 
@@ -230,13 +202,12 @@
 		 * Guarda los montos y gastos mensuales
 		 * del cliente
 		 */
-		$("td").focusout(function() {
+		function upData(name, objeto) {
+		    console.log($(objeto).text());
 		    var id = $("#id_cliente").val();
-		    console.log(id);
 		    $.ajax({
 		        type: "GET",
-		        url: "./ajax/cliente/movimiento_cliente.php?accion=update&id=" + id + "&name=" + $(this)[0].id + "&valor=" +
-		            $(this).text(),
+		        url: "./ajax/cliente/movimiento_cliente.php?accion=update&id=" + id + "&name=" + name + "&valor=" + $(objeto).text(),
 		        beforeSend: function(objeto) {
 		            //$("#resultados_ajax").html("Mensaje: Cargando...");
 		        },
@@ -245,7 +216,7 @@
 		        }
 		    });
 
-		});
+		};
 
 
 

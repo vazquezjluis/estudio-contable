@@ -14,36 +14,28 @@
 	require_once ("../config/db.php");//Contiene las variables de configuracion para conectar a la base de datos
 	require_once ("../config/conexion.php");//Contiene funcion que conecta a la base de datos
 
+  require_once ("../funciones.php");
 	$active_facturas="";
 	$active_productos="";
 	$active_clientes="active";
 	$active_usuarios="";
   $title="Clientes | Estudio Contable";
-  
-  /** Obtengo los datos de la categoria del cliente */
-$monto_a_pagar= 0;  
-if(isset($_SESSION['cliente_condicion_iva']) and $_SESSION['cliente_condicion_iva']=="Monotributo" ){
-  $sql = "SELECT * FROM categorias WHERE categoria = 'A'";
-  $query=mysqli_query($con, $sql);
-  $row= mysqli_fetch_array($query);
-  
-  $monto_a_pagar = $row['ingresos_brutos'];
+
+$categorias = array("A","B","C","D","E","F","G","H","I","J","K","L");
+foreach($categorias as $k =>$v){
+  if  (trim($_SESSION['cliente_categoria'])==$v){
+    $siguiente_categoria = $categorias[$k+1];
+    break;
+  }
+
 }
 
-$sql_movimientos = " SELECT
-enero+febrero+marzo+abril+mayo+
-junio+julio+agosto+septiembre+
-octubre+noviembre+diciembre as Fac_actual
-FROM
-movimientos
-WHERE
-cliente = ".$_SESSION['cliente_id']."
-AND movimiento = 'ingresos'";
-
-$query=mysqli_query($con, $sql_movimientos);
-$row= mysqli_fetch_array($query);
-
-$facturacion_actual = $row['Fac_actual'];
+$monto_a_pagar            = getMontoAPagar(trim($_SESSION['cliente_categoria']));//Es el monto que figura en la categoria
+$facturacion_actual       = getFacturacionActual($_SESSION['cliente_id']);//Suma de la facturacion hasta el momento 
+$mes_incompleto           = mesIncompleto($facturacion_actual);//meses que restan para la proxima recategorizacion
+$monto_a_facturar_por_mes = ( $monto_a_pagar - $facturacion_actual[4]['total_ingreso'] ) / $mes_incompleto;
+$monto_a_pagar_sig_cate   = getMontoAPagar($siguiente_categoria);
+ 
 
 
 ?>
@@ -109,20 +101,20 @@ $facturacion_actual = $row['Fac_actual'];
                 
               
                 <li class="list-group-item " style="padding:1%;">
-                    <span class="badge">$ <?php echo $monto_a_pagar;?></span>
+                    <span class="badge">$ <?php echo " ".number_format($monto_a_pagar, 2,'.',' ');?></span>
                     Monto a pagar
                 </li>
                 <li class="list-group-item " style="padding:1%;">
-                    <span class="badge">$ <?php echo $facturacion_actual;?></span>
+                    <span class="badge">$ <?php echo " ".number_format($facturacion_actual[4]['total_ingreso'], 2,'.',' '); ?></span>
                     Facturacion Actual
                 </li>
                 <li class="list-group-item sm " style="padding:1%;">
-                    <span class="badge">$ 14000</span>
+                    <span class="badge">$ <?php echo " ".number_format($monto_a_facturar_por_mes, 2,'.',' ');?></span>
                     Monto a facturar por mes
                 </li>
                 <li class="list-group-item " style="padding:1%;">
-                    <span class="badge">$ 14000</span>
-                    Monto a pagar siguiente Categoria
+                    <span class="badge">$ <?php echo " ".number_format($monto_a_pagar_sig_cate, 2,'.',' ');?></span>
+                    Monto a pagar siguiente Categoria (<?= $siguiente_categoria;?>)
                 </li>
                 <li class="list-group-item" style="padding:1%;">
                   <div class="row" style="text-align:center;">
@@ -140,7 +132,7 @@ $facturacion_actual = $row['Fac_actual'];
             <button type="button" style="margin-top:" name="" id="" class="btn btn-primary btn-sm btn-block">
               Liquidacion mensual de Ingresos Brutos
             </button>
-            <h4>Honararios $1500</h4>
+            <h4>Honararios $<?php echo $_SESSION['cliente_honorario'];?></h4>
           </div>
           <div class="col-md-6">
             <div class="row">
