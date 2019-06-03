@@ -110,7 +110,7 @@ class Login
         $_SESSION = array();
         session_destroy();
         // return a little feeedback message
-        $this->messages[] = "Has sido desconectado.";
+        //$this->messages[] = "Has sido desconectado.";
 
     }
 

@@ -14,84 +14,84 @@
 			<form class="form-horizontal" method="post" id="guardar_cliente" name="guardar_cliente">
 			<div id="resultados_ajax"></div>
 
-			  <div class="form-group">
-				<label for="nombre" class="col-sm-3 control-label">Nombre *</label>
+			  <div class="form-group form-group-sm">
+				<label for="nombre" class="col-sm-3 control-label">Nombre/R. Social *</label>
 				<div class="col-sm-8">
 				  <input type="text" class="form-control" id="nombre" name="nombre" required>
 				</div>
 			  </div>
 
-				<div class="form-group">
+				<div class="form-group form-group-sm">
 					<label for="cuit" class="col-sm-3 control-label">Cuit *</label>
 					<div class="col-sm-8">
 						<input type="text" class="form-control" id="cuit" name="cuit"  required>
 					</div>
 			  </div>
 
-			  <div class="form-group">
+			  <div class="form-group form-group-sm">
 					<label for="condicion" class="col-sm-3 control-label">Cond. ante el IVA *</label>
 					<div class="col-sm-8">
 						<select class="form-control" id="condicion" name="condicion"  required>
 							<option value="">-- Selecciones--</option>
-							<option value="1">Responsable Monotributo</option>
-							<option value="2">IVA Responsable no Inscripto</option>
-							<option value="3">IVA Responsable Inscripto</option>
-							<option value="4">IVA no Responsable</option>
-							<option value="5">IVA Sujeto Exento</option>
+							<option value="Monotributo">Monotributo</option>
+							<option value="IVA Responsable no Inscripto">IVA Responsable no Inscripto</option>
+							<option value="IVA Responsable Inscripto">IVA Responsable Inscripto</option>
+							<option value="IVA no Responsable">IVA no Responsable</option>
+							<option value="IVA Sujeto Exento">IVA Sujeto Exento</option>
 						</select>
 					</div>
 				</div>
 
-			  <div class="form-group" id="categoria_div" style="display:none">
+			  <div class="form-group form-group-sm"  >
 					<label for="categoria" class="col-sm-3 control-label">Categoria *</label>
 					<div class="col-sm-8">
-					<input type="text" class="form-control" id="categoria" name="categoria" value=" "  required>
+					<input type="text" class="form-control" id="categoria" name="categoria" value=" "  required readonly="readonly">
 					</div>
 				</div>
 
-			  <div class="form-group">
+			  <div class="form-group form-group-sm">
 					<label for="date_added" class="col-sm-3 control-label">Fecha Inicio de actividades *</label>
 					<div class="col-sm-8">
 						<input type="date" class="form-control" id="date_added" name="date_added"  required>
 					</div>
 			  </div>
 
-			  <div class="form-group">
-					<label for="honorario" class="col-sm-3 control-label">Honorarios $</label>
+			  <div class="form-group form-group-sm">
+					<label for="honorario" class="col-sm-3 control-label">Honorarios $ *</label>
 					<div class="col-sm-8">
-						<input type="number" class="form-control" id="honorario" name="honorario"  required>
+						<input type="text" class="form-control" id="honorario" name="honorario"  required>
 					</div>
 			  </div>
 
-			  <div class="form-group">
-					<label for="usuario" class="col-sm-3 control-label">Usuario</label>
+			  <div class="form-group form-group-sm">
+					<label for="usuario" class="col-sm-3 control-label">Usuario *</label>
 					<div class="col-sm-8">
 						<input type="text" class="form-control" id="usuario" name="usuario"  required>
 					</div>
 			  </div>
 
-			  <div class="form-group">
-					<label for="clave" class="col-sm-3 control-label">Clave</label>
+			  <div class="form-group form-group-sm">
+					<label for="clave" class="col-sm-3 control-label">Clave *</label>
 					<div class="col-sm-8">
 						<input type="text" class="form-control" id="clave" name="clave"  required>
 					</div>
 			  </div>
 
-			  <div class="form-group">
+			  <div class="form-group form-group-sm">
 				<label for="telefono" class="col-sm-3 control-label">Teléfono</label>
 				<div class="col-sm-8">
 				  <input type="text" class="form-control" id="telefono" name="telefono" >
 				</div>
 			  </div>
 			  
-			  <div class="form-group">
+			  <div class="form-group form-group-sm">
 				<label for="email" class="col-sm-3 control-label">Email</label>
 				<div class="col-sm-8">
 					<input type="email" class="form-control" id="email" name="email" >				  
 				</div>
 			  </div>
 			  
-			  <div class="form-group">
+			  <div class="form-group form-group-sm">
 				<label for="direccion" class="col-sm-3 control-label">Dirección</label>
 				<div class="col-sm-8">
 					<textarea class="form-control" id="direccion" name="direccion"   maxlength="255" ></textarea>				  

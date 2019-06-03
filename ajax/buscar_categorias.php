@@ -60,35 +60,49 @@
 			echo mysqli_error($con);
 			?>
 			<div class="table-responsive">
-			  <table class="table table-condensed">
-				<tr  class="default">
-					<th>#</th>
+			  <table class="table table-bordered table-condensed table-hover" style="font-size:11px;">
+				<tr>
+					<!-- <th>#</th> -->
 					<th>Categoria</th>
 					<th>Ingresos brutos</th>
-					<th class='text-right'>Acciones</th>
+					<th>Actividad</th>
+					<th>Cantidad Mínima de Empleados</th>
+					<th>Sup. Afectada</th>
+					<th>Energía Eléctrica Consumida Anualmente</th>
+					<th>Alquileres Devengados Anualmente</th>
+					<th>Locaciones y/o Prestaciones de Servicios</th>
+					<th>Venta de Cosas Muebles</th>
+					<th>Aportes al SIPA</th>
+					<th>Aportes Obra Social</th>
+					<th>Total Locaciones y/o prestaciones de servicios</th>
+					<th>Total Venta de Cosas Muebles</th>
 					
 				</tr>
 				<?php
 				while ($row=mysqli_fetch_array($query)){
-						$id=$row['id'];
-						$categoria=$row['categoria'];
-						$iibb=$row['iibb'];
 					?>
 					<tr>
-						<td><?php echo $id; ?></td>
-						<td><?php echo $categoria; ?></td>
-						<td><?php echo "$ ".$iibb; ?></td>
-						<td class="text-right">
-							<!-- <a href="#" class='btn btn-default' title='Descargar categoria' onclick="imprimir_factura('<?php // echo $id_factura;?>');"><i class="glyphicon glyphicon-download"></i></a>  -->
-							<a href="#" class='btn btn-sm btn-default' title='Borrar categoria' onclick="modificar('<?php echo $id; ?>')"><i class="glyphicon glyphicon-edit"></i> </a>
-						</td>
+						<td><?php echo $row['categoria']; ?></td>
+						<td><?php echo $row['ingresos_brutos']; ?></td>
+						<td><?php echo $row['actividad']; ?></td>
+						<td><?php echo $row['can_min_emp']; ?></td>
+						<td><?php echo $row['sup_afe']; ?></td>
+						<td><?php echo $row['ene_ele_con_anual']; ?></td>
+						<td><?php echo $row['alq_dev_anual']; ?></td>
+						<td><?php echo $row['pres_serv']; ?></td>
+						<td><?php echo $row['ven_cos_muebles']; ?></td>
+						<td><?php echo $row['aporte_sipa']; ?></td>
+						<td><?php echo $row['aporte_os']; ?></td>
+						<td><?php echo $row['t_pres_serv']; ?></td>
+						<td><?php echo $row['t_ven_cos_muebles']; ?></td>
+						
 						
 					</tr>
 					<?php
 				}
 				?>
 				<tr>
-					<td colspan=4><span class="pull-right"><?php
+					<td colspan=14><span class="pull-right"><?php
 					 echo paginate($reload, $page, $total_pages, $adjacents);
 					?></span></td>
 				</tr>

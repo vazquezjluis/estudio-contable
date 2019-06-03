@@ -6,9 +6,7 @@
         }else if (empty($_POST['mod_nombre'])) {
            $errors[] = "Nombre vacío";
         }  else if ($_POST['mod_cuit']==""){
-			$errors[] = "Cuit vacío";
-        }  else if ($_POST['mod_categoria']==""){
-			$errors[] = "No existe categoria";
+			$errors[] = "Cuit vacío";        
 		}  else if (
 			!empty($_POST['mod_id']) &&
 			!empty($_POST['mod_nombre']) 
