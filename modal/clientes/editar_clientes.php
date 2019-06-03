@@ -27,7 +27,7 @@
 			  <div class="form-group form-group-sm">
 					<label for="mod_cuit" class="col-sm-3 control-label">Cuit *</label>
 					<div class="col-sm-8">
-						<input type="text" class="form-control" id="mod_cuit" name="mod_cuit"  required>
+						<input type="text" class="form-control" id="mod_cuit" name="mod_cuit" placeholder="Cifra de 11 dígitos"  pattern="[0-9]{11}"  required>
 					</div>
 			  </div>
 
@@ -47,8 +47,11 @@
 
 			  <div class="form-group form-group-sm" >
 					<label for="mod_categoria" class="col-sm-3 control-label">Categoria *</label>
-					<div class="col-sm-8">
-					<input type="text" class="form-control" id="mod_categoria" value=" " name="mod_categoria"  required>
+					<div class="col-sm-2">
+						<input type="text" class="form-control" id="mod_categoria" maxlength="1" value=" " pattern="[A-K]" name="mod_categoria"  required>
+					</div>
+					<div class="col-sm-4">
+						<i style="font-size:11px;">Una letra mayúscula de la A - K</i>
 					</div>
 				</div>
 
@@ -62,14 +65,16 @@
 			  <div class="form-group form-group-sm">
 					<label for="mod_honorario" class="col-sm-3 control-label">Honorarios $</label>
 					<div class="col-sm-8">
-						<input type="text" class="form-control" id="mod_honorarios" name="mod_honorarios"  >
+						<input type="number" class="form-control" id="mod_honorarios" name="mod_honorarios"  >
 					</div>
 			  </div>
 
 			  <div class="form-group form-group-sm">
 					<label for="mod_usuario" class="col-sm-3 control-label">Usuario</label>
 					<div class="col-sm-8">
-						<input type="text" class="form-control" id="mod_usuario" name="mod_usuario"  >
+						<input type="text" class="form-control" id="mod_usuario"  name="mod_usuario"  >
+						<span id="mod_respuesta"></span>
+						<span id="mod_loader"></span>
 					</div>
 			  </div>
 

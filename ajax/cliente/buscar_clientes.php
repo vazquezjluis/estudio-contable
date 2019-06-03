@@ -1,9 +1,9 @@
 <?php
 
 	/*-------------------------
-	Autor: Obed Alvarado
-	Web: obedalvarado.pw
-	Mail: info@obedalvarado.pw
+	Autor: Jose Luis Vazquez
+	Web: control-app.com
+	Mail: info@control-app.com
 	---------------------------*/
 	include('../is_logged.php');//Archivo verifica que el usario que intenta acceder a la URL esta logueado
 	/* Connect To Database*/
@@ -168,6 +168,23 @@
 			  </div>
 			</div>
 			<?php
+		}
+	}else if ($action =="valida"){
+		$usuario	= trim($_GET['usuario']);
+		
+		$sql = "select * from clientes where usuario='".$usuario."' ";
+		
+		if (isset($_GET['id_cliente'])){
+			$sql.= " AND id_cliente != ".trim($_GET['id_cliente']);
+		}
+
+		$query=mysqli_query($con,$sql );
+		$count=mysqli_num_rows($query);
+		
+		if ($count!=0){
+			echo "error";
+		}else{
+			echo "ok";
 		}
 	}
 ?>
