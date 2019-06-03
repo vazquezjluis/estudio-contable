@@ -24,10 +24,21 @@ DROP TABLE IF EXISTS `categorias`;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `categorias` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `categoria` char(4) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `iibb` decimal(10,2) NOT NULL DEFAULT '0.00',
+  `categoria` char(4) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `ingresos_brutos` varchar(100) NOT NULL DEFAULT '0.00',
+  `actividad` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `can_min_emp` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `sup_afe` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `ene_ele_con_anual` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `alq_dev_anual` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `pres_serv` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `ven_cos_muebles` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `aporte_sipa` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `aporte_os` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `t_pres_serv` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `t_ven_cos_muebles` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=182 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -36,7 +47,7 @@ CREATE TABLE `categorias` (
 
 LOCK TABLES `categorias` WRITE;
 /*!40000 ALTER TABLE `categorias` DISABLE KEYS */;
-INSERT INTO `categorias` VALUES (1,'A',138128.99),(2,'B',207191.98),(3,'C',0.00),(4,'D',0.00),(5,'E',0.00),(6,'F',0.00),(7,'G',0.00),(8,'H',0.00),(9,'I',0.00),(10,'J',0.00),(11,'K',0.00);
+INSERT INTO `categorias` VALUES (171,'A','138127.99','No excluida','No requiere','Hasta 30 m2','Hasta 3330 Kw','51798','111.81','111.81','493.31','689','1294.12','1294.12'),(172,'B','207191.98','No excluida','No requiere','Hasta 45 m2','Hasta 5000 Kw','51798','215.42','215.42','542.64','689','1447.06','1447.06'),(173,'C','276255.98','No excluida','No requiere','Hasta 60 m2','Hasta 6700 Kw','103595.99','368.34','340.38','596.91','689','1654.25','1626.29'),(174,'D','414383.98','No excluida','No requiere','Hasta 85 m2','Hasta 10000 Kw','103595.99','605.13','559.09','656.6','689','1950.73','1904.69'),(175,'E','552511.95','No excluida','No requiere','Hasta 110 m2','Hasta 13000 Kw','129083.89','1151.06','892.89','722.26','689','2562.32','2304.15'),(176,'F','690639.95','No excluida','No requiere','Hasta 150 m2','Hasta 16500 Kw','129494.98','1583.54','1165.86','794.48','689','3067.02','2649.34'),(177,'G','828767.94','No excluida','No requiere','Hasta 200 m2','Hasta 20000 Kw','155393.99','2014.37','1453.62','873.93','689','3577.3','3016.55'),(178,'H','1151066.58','No excluida','No requiere','Hasta 200 m2','Hasta 20000 Kw','207191.98','4604.26','3568.31','961.32','689','6254.58','5218.63'),(179,'I','1352503.24','Venta de Bs. muebles','No requiere','Hasta 200 m2','Hasta 20000 Kw','207191.98','-','5755.33','1057.46','689','-','7501.79'),(180,'J','1553939.89','Venta de Bs. muebles','No requiere','Hasta 200 m2','Hasta 20000 Kw','207191.98','-','6763.34','1163.21','689','-','8615.55'),(181,'K','1726599.88','Venta de Bs. muebles','No requiere','Hasta 200 m2','Hasta 20000 Kw','207191.98','-','7769.7','1279.52','689','-','9738.22');
 /*!40000 ALTER TABLE `categorias` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -63,7 +74,7 @@ CREATE TABLE `clientes` (
   `condicion_iva` varchar(50) NOT NULL DEFAULT '',
   PRIMARY KEY (`id_cliente`),
   UNIQUE KEY `codigo_producto` (`nombre_cliente`)
-) ENGINE=MyISAM AUTO_INCREMENT=25 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=28 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -72,7 +83,7 @@ CREATE TABLE `clientes` (
 
 LOCK TABLES `clientes` WRITE;
 /*!40000 ALTER TABLE `clientes` DISABLE KEYS */;
-INSERT INTO `clientes` VALUES (22,'Juan Carlos Medina','','','',1,'2019-05-12 00:00:00','20338049253','A',0.00,NULL,NULL,'Monotributo'),(21,'Diego Irala','','','',1,'2019-05-12 00:00:00','20338049253','A',0.00,NULL,NULL,'Monotributo'),(20,'Carlos Andres Vazquez','','','',1,'2019-05-12 00:00:00','20338049253','A',0.00,NULL,NULL,'Monotributo'),(19,'Marta Marchesi','','','',1,'2018-01-12 00:00:00','20338049253','A',0.00,NULL,NULL,'Monotributo'),(23,'Patricia Alejandra','','','',1,'2019-05-17 00:00:00','20338049253','',4201.00,'joseluis','joseluis','IVA Responsable Inscripto'),(24,'Jose luis','','','',1,'2018-02-25 00:00:00','20338049253','A',500.00,'joseluis','joseluis','Monotributo');
+INSERT INTO `clientes` VALUES (27,'Jose luis','','','',1,'2019-06-04 00:00:00','20338049253','A',2055.00,'joseluis','joseluis','Monotributo');
 /*!40000 ALTER TABLE `clientes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -85,9 +96,9 @@ DROP TABLE IF EXISTS `movimientos`;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `movimientos` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `movimiento` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `movimiento` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `cliente` int(11) NOT NULL,
-  `anio` varchar(4) NOT NULL,
+  `anio` varchar(4) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `enero` decimal(10,2) DEFAULT '0.00',
   `febrero` decimal(10,2) DEFAULT '0.00',
   `marzo` decimal(10,2) DEFAULT '0.00',
@@ -101,7 +112,7 @@ CREATE TABLE `movimientos` (
   `noviembre` decimal(10,2) DEFAULT '0.00',
   `diciembre` decimal(10,2) DEFAULT '0.00',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -110,7 +121,7 @@ CREATE TABLE `movimientos` (
 
 LOCK TABLES `movimientos` WRITE;
 /*!40000 ALTER TABLE `movimientos` DISABLE KEYS */;
-INSERT INTO `movimientos` VALUES (3,'ingresos',19,'2019',10000.00,10000.00,10000.00,10000.00,10000.00,10000.00,10000.50,10000.00,10000.00,10000.00,10000.00,10000.00),(4,'egresos',19,'2019',10000.00,10000.00,10000.00,10000.00,10000.00,10000.00,10000.00,10000.00,10000.00,500.00,500.00,10000.00),(5,'ingresos',20,'2019',0.00,0.00,0.00,0.00,0.00,15000.00,20000.00,0.00,0.00,0.00,0.00,0.00),(6,'egresos',20,'2019',0.00,0.00,0.00,0.00,0.00,0.00,1500.00,25000.00,300.00,0.00,0.00,0.00),(7,'ingresos',21,'2019',0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00),(8,'egresos',21,'2019',0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00),(9,'ingresos',22,'2019',0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00),(10,'egresos',22,'2019',0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00),(11,'ingresos',23,'2019',0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00),(12,'egresos',23,'2019',0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00),(13,'ingresos',24,'2019',0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00),(14,'egresos',24,'2019',0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00);
+INSERT INTO `movimientos` VALUES (21,'ingresos',27,'2019',10000.00,20000.00,20000.00,0.00,0.00,0.00,455.00,0.00,0.00,0.00,0.00,0.00),(22,'egresos',27,'2019',0.00,0.00,0.00,0.00,0.00,0.00,200.00,200.00,0.00,0.00,0.00,0.00),(23,'ingresos',27,'2018',1000.00,1500.00,2500.00,1110.00,0.00,0.00,10000.00,10000.00,10000.00,10000.00,10000.00,10000.00),(24,'egresos',27,'2018',15110.00,2500.00,1140.00,2250.00,0.00,0.00,10.00,10.00,10.00,10.50,30.00,0.00);
 /*!40000 ALTER TABLE `movimientos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -141,7 +152,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'Jose','Vazquez','admin','$2y$10$MPVHzZ2ZPOWmtUUGCq3RXu31OTB.jo7M9LZ7PmPQYmgETSNn19ejO','admin@admin.com','2016-05-21 15:06:00'),(2,'Cristian ','Bale','critian','$2y$10$uO9Nw9RCTmFmES.8xHWZseLvqQmxuan2u8tiAP41c1EDVHFgPcpeC','cbale@gmail.com','2019-05-21 19:20:04');
+INSERT INTO `users` VALUES (1,'Jose','Vazquez','admin','$2y$10$MPVHzZ2ZPOWmtUUGCq3RXu31OTB.jo7M9LZ7PmPQYmgETSNn19ejO','nosequeoner@asdasd.com','2016-05-21 15:06:00'),(2,'Cristian ','Bale','critian','$2y$10$V/6ViDqB57DrD91KkQgwcu5L/p3PRmDex8b9J9u4WfjlPCcS5OlPe','cbale@gmail.com','2019-05-21 19:20:04');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -154,4 +165,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-05-30  1:39:08
+-- Dump completed on 2019-06-03  3:50:19
