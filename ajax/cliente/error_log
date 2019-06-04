@@ -6,3 +6,4 @@
 [31-May-2019 16:33:12 UTC] PHP Notice:  Undefined index: mod_condicion in /home/qdxcz78681q7/public_html/desarrollos/estudio-contable/ajax/cliente/nuevo_cliente.php on line 16
 [31-May-2019 16:33:17 UTC] PHP Notice:  Undefined index: mod_condicion in /home/qdxcz78681q7/public_html/desarrollos/estudio-contable/ajax/cliente/nuevo_cliente.php on line 16
 [31-May-2019 16:33:51 UTC] PHP Notice:  Undefined index: mod_condicion in /home/qdxcz78681q7/public_html/desarrollos/estudio-contable/ajax/cliente/nuevo_cliente.php on line 16
+[03-Jun-2019 16:45:47 UTC] PHP Warning:  mysqli_num_rows() expects parameter 1 to be mysqli_result, boolean given in /home/qdxcz78681q7/public_html/desarrollos/estudio-contable/ajax/cliente/buscar_clientes.php on line 17

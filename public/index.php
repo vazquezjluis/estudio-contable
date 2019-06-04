@@ -3,7 +3,8 @@
 	Autor: Jose Luis Vazquez
 	Web: www.control-app.com
 	Mail: info@control-app.com
-	---------------------------*/
+  ---------------------------*/
+  error_reporting(E_ALL & ~E_DEPRECATED);
 	session_start();
 	if (!isset($_SESSION['cliente_login_status']) AND $_SESSION['cliente_login_status'] != 1) {
         header("location: ../login.php");
@@ -47,6 +48,19 @@ $tipo_documento = array(
   3=>"Form. 960",
   4=>"Credencial de Pago"
 );
+$sql_mensaje="SELECT * FROM  mensajes WHERE cliente = ".$_SESSION['cliente_id']." AND visto = '0' AND destino = 'cliente' ";
+
+$query_mensaje = mysqli_query($con, $sql_mensaje);
+ 
+
+$class = array(
+  0=>"well",
+  1=>"alert alert-success",
+  2=>"alert alert-warning",
+  3=>"alert alert-danger"
+);
+
+//mensajed
 
 ?>
 
@@ -92,7 +106,7 @@ $tipo_documento = array(
     <div class="jumbotron" style="padding-top:0px;">
         <div class="row">
           <div class="col-md-12">
-            <!-- <div class="alert alert-danger" role="alert"><strong>Urgente!</strong> Por favor comuniquese con el contador (pero tené cuidado porque es estafador!)</div> -->
+            
             <div class="row">
                   <div class="col-md-6" style="text-align:center">
                     <h1 style="font-family:Arial;font-size:2.5em;"><?php echo strToUpper($_SESSION['cliente_name']);?></h1>
@@ -102,6 +116,21 @@ $tipo_documento = array(
                     <?php  }
                     ?>
                     
+                  </div>
+                  <div class="col-md-6" style="text-align:center;padding-top:1%;">
+                  <?php 
+                    if ($query_mensaje->num_rows!=0){
+                        while($men= mysqli_fetch_array($query_mensaje)){?>
+                          <div class="<?php echo $class[$men['prioridad']]; ?>" role="alert">
+                            <strong><?php echo $men['asunto'];?></strong> 
+                            <?php echo $men['mensaje'];?>
+                          </div> 
+                          <?php
+                          //modifica el visto del mensaje
+                          $update_mensaje="UPDATE  mensajes set  visto = '".date('Y-m-d h:m:s')."' where id_mensaje =  ".$men['id_mensaje'];
+                          mysqli_query($con, $update_mensaje);
+                          }
+                        } ?>
                   </div>
                   
                 </div>  
@@ -154,21 +183,29 @@ $tipo_documento = array(
           <div class="col-md-6">
             <div class="row">
                   <div class="col-md-12" style="text-align:center">
-                    <!-- <h1 style="font-family:Arial;font-size:3em;"><?php // echo strToUpper($_SESSION['cliente_name']);?></h1>
-                    <div class="letraCliente">A</div> -->
+                  
                   </div>
             </div>  
             <div class="well" style="background-color:#ffff">
             <h5><i><b>Enviar un mensaje al contador </b></i><span class="glyphicon glyphicon-send"></span></h5>
-              <form>
+              <form method="post" id="guardar_mensaje" name="guardar_mensaje">
                   <div class="form-group">
-                    <input type="text" class="form-control" id="asunto" placeholder="Asunto">
+                    <div id="mensaje_ajax"></div>
                   </div>
                   <div class="form-group">
-                    <textarea class="form-control" id="texto" placeholder="..."></textarea>
+                    <input type="text" class="form-control" id="asunto" name="asunto" placeholder="Asunto" required>
                   </div>
+                  <div class="form-group">
+                    <textarea class="form-control" id="mensaje" name="mensaje" placeholder="..." required></textarea>
+                  </div>
+                  <input type="hidden" name="mensaje_cliente" value="<?php echo $_SESSION['cliente_id']; ?>">
+                  <input type="hidden" name="visto" value="0">
+                  <input type="hidden" name="prioridad" value="0">
+                  <input type="hidden" name="estado" value="1">
+                  <input type="hidden" name="destino" value="contador">
+                  <input type="hidden" name="send" value="1">
                   <div class="form-group " style="text-align:right;">
-                    <button type="submit" class="btn btn-primary">Enviar</button>
+                    <button type="submit" class="btn btn-primary" id="enviar_mensaje">Enviar</button>
                   </div>
 
                 </form>
@@ -186,5 +223,27 @@ $tipo_documento = array(
 <?php
 	include("../footer.php");
 	?>
+    <script type="text/javascript" >
+      $("#guardar_mensaje").submit(function(event) {
+		    $('#enviar_mensaje').attr("disabled", true);
+
+		    var parametros = $(this).serialize();
+		    $.ajax({
+		        type: "POST",
+		        url: "../ajax/cliente/mensaje.php",
+		        data: parametros,
+		        beforeSend: function(objeto) {
+		            $("#resultados_ajax").html("Mensaje: Enviando...");
+		        },
+		        success: function(datos) {
+		            $("#resultados_ajax").html(datos);
+		            $('#enviar_mensaje').attr("disabled", false);
+		            $('#guardar_mensaje')[0].reset();
+		            //load(1);
+		        }
+		    });
+		    event.preventDefault();
+		})
+    </script>
 </body>
 </html>

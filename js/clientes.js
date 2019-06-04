@@ -92,6 +92,27 @@
 		    event.preventDefault();
 		})
 
+		$("#guardar_mensaje").submit(function(event) {
+		    $('#enviar_mensaje').attr("disabled", true);
+
+		    var parametros = $(this).serialize();
+		    $.ajax({
+		        type: "POST",
+		        url: "ajax/cliente/mensaje.php",
+		        data: parametros,
+		        beforeSend: function(objeto) {
+		            $("#mensaje_ajax").html("Mensaje: Enviando...");
+		        },
+		        success: function(datos) {
+		            $("#mensaje_ajax").html(datos);
+		            $('#enviar_mensaje').attr("disabled", false);
+		            $('#guardar_mensaje')[0].reset();
+		            //load(1);
+		        }
+		    });
+		    event.preventDefault();
+		})
+
 
 		$("#guardar_documento").submit(function(event) {
 		    $('#guardar_datos').attr("disabled", true);
@@ -198,6 +219,10 @@
 
 		function subir_documento(id) {
 		    $("#doc_cliente").val(id);
+		}
+
+		function mensaje(id) {
+		    $("#mensaje_cliente").val(id);
 		}
 		/**
 		 * 
