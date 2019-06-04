@@ -37,6 +37,16 @@ $monto_a_facturar_por_mes = ( $monto_a_pagar - $facturacion_actual[4]['total_ing
 $monto_a_pagar_sig_cate   = getMontoAPagar($siguiente_categoria);
  
 
+//Documentos del cliente
+$sql_documento="SELECT * FROM  documentos WHERE cliente = ".$_SESSION['cliente_id'];
+$query_documentos = mysqli_query($con, $sql_documento);
+
+$tipo_documento = array(
+  1=>"inscripcion de AFIP",
+  2=>"inscripcion de IIBB",
+  3=>"Form. 960",
+  4=>"Credencial de Pago"
+);
 
 ?>
 
@@ -122,10 +132,17 @@ $monto_a_pagar_sig_cate   = getMontoAPagar($siguiente_categoria);
                   </div>  
                     
                       <ul>
-                        <li><a href="#"> Form. 960 <span class="glyphicon glyphicon-download-alt"></span></a></li>
-                        <li><a href="#"> Inscripcion de AFIP <span class="glyphicon glyphicon-download-alt"></span></a></li>
-                        <li><a href="#"> Inscripcion de IIBB <span class="glyphicon glyphicon-download-alt"></span></a></li>
-                        <li><a href="#"> Credencial de pago <span class="glyphicon glyphicon-download-alt"></span></a></li>
+                      <?php
+                        if ($query_documentos->num_rows!=0){
+                          while($doc= mysqli_fetch_array($query_documentos)){
+                            ?>
+                              <li><a href="../<?php echo $doc['ruta']?>" target="_blanck"> <?php echo $tipo_documento[$doc['tipo']]; ?> <span class="glyphicon glyphicon-download-alt"></span></a></li>
+                            <?php
+                          }
+                        } else{
+                          echo " <br>Sin documentos cargados<br>";
+                        }
+                        ?>
                       </ul>
                 </li>
             </ul>

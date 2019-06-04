@@ -75,7 +75,7 @@
 		$total_pages = ceil($numrows/$per_page);
 		$reload = './clientes.php';
 		//main query to fetch the data
-		$sql="SELECT * FROM  $sTable $sWhere LIMIT $offset,$per_page";
+		$sql="SELECT * FROM  $sTable $sWhere LIMIT $offset,$per_page ";
 		
 		$query = mysqli_query($con, $sql);
 		//loop through fetched data
@@ -93,6 +93,7 @@
 					<th>Condicion IVA</th>
 					<th>Inicio de actividades</th>
 					<th>Honorarios</th>
+					<th>Documentos</th>
 					<th class='text-right'>Acciones</th>
 					
 				</tr>
@@ -119,6 +120,17 @@
 						if ($row['categoria']!=null and $row['categoria']!="") {
 							$condicion_iva_str = $row['condicion_iva']." '".$row['categoria']."'";
 						}
+
+						//Documentos del cliente
+						$sql_documento="SELECT * FROM  documentos WHERE cliente = ".$id_cliente;
+						$query_documentos = mysqli_query($con, $sql_documento);
+						
+						$tipo_documento = array(
+							1=>"inscripcion de AFIP",
+							2=>"inscripcion de IIBB",
+							3=>"Form. 960",
+							4=>"Credencial de Pago"
+						);
 						
 					?>
 					
@@ -146,10 +158,28 @@
 						<td><?php echo $condicion_iva." ".$categoria;?></td>
 						<td><?php echo $fecha_inicio;?></td>
 						<td><?php echo "$ ".$honorarios;?></td>
+						<td>
+						
+							<ul>
+							<?php
+							if ($query_documentos->num_rows!=0){
+								while($doc= mysqli_fetch_array($query_documentos)){
+									?>
+										<li><a href="<?php echo $doc['ruta']?>" target="_blanck"> <?php echo $tipo_documento[$doc['tipo']]; ?> <span class="glyphicon glyphicon-download-alt"></span></a></li>
+									<?php
+								}
+							} else{
+								echo " Sin documentos cargados";
+							}
+							?>
+							</ul>
+
+						</td>
+						
 						
 					<td ><span class="pull-right">
 						<a href="#" class='btn btn-default btn-xs' title='Movimientos' onclick="movimientos('<?php echo $id_cliente;?>');" data-toggle="modal" data-target="#myModal3"><i class="glyphicon glyphicon-list"></i> Movimientos</a> 
-						<a href="#" class='btn btn-default btn-xs' title='Documentos'  data-toggle="modal" data-target="#nuevoDocumento"><i class="glyphicon glyphicon-cloud-upload"></i> Documentos</a> 
+						<a href="#" class='btn btn-default btn-xs' title='Documentos'  onclick="subir_documento('<?php echo $id_cliente;?>');" data-toggle="modal" data-target="#nuevoDocumento"><i class="glyphicon glyphicon-cloud-upload"></i> Documentos</a> 
 						<a href="#" class='btn btn-default btn-xs' title='Editar cliente' onclick="obtener_datos('<?php echo $id_cliente;?>');" data-toggle="modal" data-target="#myModal2"><i class="glyphicon glyphicon-edit"></i></a> 
 						<a href="#" class='btn btn-default btn-xs' title='Borrar cliente' onclick="eliminar('<?php echo $id_cliente; ?>')"><i class="glyphicon glyphicon-trash"></i></a></span> 
 					</td>
