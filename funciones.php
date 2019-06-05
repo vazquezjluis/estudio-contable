@@ -8,6 +8,19 @@ function get_row($table,$row, $id, $equal){
 	return $value;
 }
 
+function  monto_limite_categoria($categoria){
+	global $con;
+	 	 /** Obtengo los datos de la categoria del cliente */
+		$limite_categoria= 0;  
+		if(isset($_SESSION['cliente_condicion_iva']) and $_SESSION['cliente_condicion_iva']=="Monotributo" ){
+			$sql = "SELECT * FROM categorias WHERE categoria = '".trim($categoria)."'";
+			$query=mysqli_query($con, $sql);
+			$row= mysqli_fetch_array($query);
+			$limite_categoria = $row['ingresos_brutos'];	
+			
+		}
+		return $limite_categoria;
+}
 /**  */
 function getMontoAPagar($categoria){
 		global $con;
@@ -112,10 +125,15 @@ function mesIncompleto($movimientos){
 	foreach($movimientos as $mov){
 		
 		if (in_array('ingresos',$mov)){
-			foreach($mov as $m){
-				if ($m =='00.00'){
-					$mes_que_falta++;
+			
+			foreach($mov as $key=> $m){
+				if ($key!='movimiento' AND $key!='anio' AND $key!='total_egreso' ){
+					if ($m =='00.00'){
+					
+						$mes_que_falta++;
+					}
 				}
+				
 			}	
 		}
 	}

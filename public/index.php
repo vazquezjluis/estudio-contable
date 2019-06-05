@@ -34,9 +34,19 @@ foreach($categorias as $k =>$v){
 $monto_a_pagar            = getMontoAPagar(trim($_SESSION['cliente_categoria']));//Es el monto que figura en la categoria
 $facturacion_actual       = getFacturacionActual($_SESSION['cliente_id']);//Suma de la facturacion hasta el momento 
 $mes_incompleto           = mesIncompleto($facturacion_actual);//meses que restan para la proxima recategorizacion
-$monto_a_facturar_por_mes = ( $monto_a_pagar - $facturacion_actual[4]['total_ingreso'] ) / $mes_incompleto;
+$monto_limite_categoria   = monto_limite_categoria(trim($_SESSION['cliente_categoria']));
+$monto_a_facturar_por_mes = ( $monto_limite_categoria - $facturacion_actual[4]['total_ingreso'] ) / $mes_incompleto;
 $monto_a_pagar_sig_cate   = getMontoAPagar($siguiente_categoria);
  
+// echo '<pre>';
+// var_dump($mes_incompleto);
+// var_dump($monto_limite_categoria);
+// var_dump($facturacion_actual[4]['total_ingreso']);
+// echo '</pre>';
+
+
+
+
 
 //Documentos del cliente
 $sql_documento="SELECT * FROM  documentos WHERE cliente = ".$_SESSION['cliente_id'];
