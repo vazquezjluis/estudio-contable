@@ -18,6 +18,7 @@
 		$usuario=mysqli_real_escape_string($con,(strip_tags($_POST["usuario"],ENT_QUOTES)));
 		$clave=mysqli_real_escape_string($con,(strip_tags($_POST["clave"],ENT_QUOTES)));
 		$honorario=mysqli_real_escape_string($con,(strip_tags($_POST["honorario"],ENT_QUOTES)));
+		$actividad=mysqli_real_escape_string($con,(strip_tags($_POST["actividad"],ENT_QUOTES)));
 		//$estado=intval($_POST['estado']);
 		$date_added=mysqli_real_escape_string($con,(strip_tags($_POST["date_added"],ENT_QUOTES)));
 		
@@ -30,7 +31,7 @@
 		  categoria, 
 		  cuit, usuario,
 		   clave, 
-		   honorario,condicion_iva) VALUES ('$nombre',
+		   honorario,condicion_iva,actividad) VALUES ('$nombre',
 		   '$telefono',
 		   '$email',
 		   '$direccion',
@@ -38,7 +39,7 @@
 		   '$date_added',
 		   '$categoria',
 		   '$cuit',
-		   '$usuario','$clave','$honorario','$condicion_iva')";
+		   '$usuario','$clave','$honorario','$condicion_iva', '$actividad')";
 		$query_new_insert = mysqli_query($con,$sql);
 
 		$sql2="SELECT max(clientes.id_cliente) as id FROM clientes LIMIT 1";

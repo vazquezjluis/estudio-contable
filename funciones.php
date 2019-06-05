@@ -14,11 +14,25 @@ function getMontoAPagar($categoria){
 	 	 /** Obtengo los datos de la categoria del cliente */
 		$monto_a_pagar= 0;  
 		if(isset($_SESSION['cliente_condicion_iva']) and $_SESSION['cliente_condicion_iva']=="Monotributo" ){
-		$sql = "SELECT * FROM categorias WHERE categoria = '".trim($categoria)."'";
-		$query=mysqli_query($con, $sql);
-		$row= mysqli_fetch_array($query);
-		
-		$monto_a_pagar = $row['ingresos_brutos'];
+			$sql = "SELECT * FROM categorias WHERE categoria = '".trim($categoria)."'";
+			$query=mysqli_query($con, $sql);
+			$row= mysqli_fetch_array($query);
+			if ($row['actividad']=='Venta de Cosas Muebles'){
+				$monto_a_pagar = $row['t_ven_cos_muebles'];
+			}else{
+				//si la categoria es mayor a la H entonces ese es el limite H
+				$categorias_tope = array ('I','J','K');
+				if (in_array($categoria,$categorias_tope)){
+					$sql2 = "SELECT * FROM categorias WHERE categoria = 'H' ";
+					$query2=mysqli_query($con, $sql2);
+					$row2= mysqli_fetch_array($query2);
+					$monto_a_pagar = $row2['t_pres_serv'];
+				}else {
+					$monto_a_pagar = $row['t_pres_serv'];
+				}
+				
+			}	
+			
 		}
 		return $monto_a_pagar;
 }

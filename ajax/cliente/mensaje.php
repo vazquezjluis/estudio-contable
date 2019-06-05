@@ -11,6 +11,7 @@
         $errors[] = "asunto vacío";
     }
     else{    
+        if (empty($_POST['prioridad'])){$_POST['prioridad']=0;}
 		/* Connect To Database*/
 		require_once ("../../config/db.php");//Contiene las variables de configuracion para conectar a la base de datos
 		require_once ("../../config/conexion.php");//Contiene funcion que conecta a la base de datos
@@ -31,8 +32,6 @@
 		if ($query_new_insert){
                 $messages[] = "El mensaje ha sido enviado al contador.";
                 if (isset($_POST['send'])){
-                    include("../../classes/sendemail.php");//Mando a llamar la funcion que se encarga de enviar el correo electronico
-                    
                     $sql_cliente = " SELECT * FROM clientes WHERE id_cliente = ".$cliente;
                     $get_cliente = mysqli_query($con,$sql_cliente);
                     $nombre = '';
@@ -48,7 +47,7 @@
 
                     // Varios destinatarios
                     $para  = 'vazquezjluis@yahoo.com' . ', '; // atención a la coma
-                    $para .= 'jlvazquez@audired.com.ar';
+                    $para .= 'schumachercristian@gmail.com';
 
                     // título
                     $título = 'Mensaje del cliente '.$nombre;
@@ -60,19 +59,10 @@
                         <title>Enviado desde el sistema contable</title>
                     </head>
                     <body>
-                        <p>'.$asunto.'</p>
-                        <p>'.$mensaje.'</p>
-                        <table>
-                            <tr>
-                                <th>'.$nombre.'</th>
-                            </tr>
-                            <tr>
-                                <td>'.$correo.'</td>
-                            </tr>
-                            <tr>
-                                <td>'.$telefono.'</td>
-                            </tr>
-                        </table>
+                        <p><b>'.$asunto.'</b></p>
+                        <p><i>'.$mensaje.'</i></p>
+                        <br>
+                        <p>'.$nombre.'</p><p>'.$correo.'</p><p>'.$telefono.'</p>
                         <hr>
                         <table>
                             <tr>

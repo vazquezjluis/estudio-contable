@@ -45,6 +45,17 @@
 					</div>
 				</div>
 
+			  <div class="form-group form-group-sm">
+					<label for="mod_actividad" class="col-sm-3 control-label">Actividad *</label>
+					<div class="col-sm-8">
+						<select class="form-control actividad" id="mod_actividad" name="mod_actividad"  required>
+							<option value="">-- Selecciones--</option>
+							<option value="Locaciones y/o prestaciones de servicios">Locaciones y/o prestaciones de servicios</option>
+							<option value="Venta de Cosas Muebles">Venta de Cosas Muebles</option>
+						</select>
+					</div>
+				</div>
+
 			  <div class="form-group form-group-sm" >
 					<label for="mod_categoria" class="col-sm-3 control-label">Categoria *</label>
 					<div class="col-sm-2">

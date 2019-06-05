@@ -307,3 +307,27 @@ Stack trace:
 [04-Jun-2019 23:07:53 UTC] PHP Notice:  Undefined variable: active_categorias in /home/qdxcz78681q7/public_html/desarrollos/estudio-contable/navbar.php on line 24
 [04-Jun-2019 23:07:53 UTC] PHP Warning:  Use of undefined constant php - assumed 'php' (this will throw an Error in a future version of PHP) in /home/qdxcz78681q7/public_html/desarrollos/estudio-contable/navbar.php on line 27
 [04-Jun-2019 23:08:42 UTC] PHP Notice:  Undefined index: user_login_status in /home/qdxcz78681q7/public_html/desarrollos/estudio-contable/clientes.php on line 8
+[05-Jun-2019 11:48:12 UTC] PHP Notice:  Undefined index: user_login_status in /home/qdxcz78681q7/public_html/desarrollos/estudio-contable/clientes.php on line 8
+[05-Jun-2019 14:05:28 UTC] PHP Warning:  Use of undefined constant php - assumed 'php' (this will throw an Error in a future version of PHP) in /home/qdxcz78681q7/public_html/desarrollos/estudio-contable/navbar.php on line 21
+[05-Jun-2019 14:05:28 UTC] PHP Warning:  Use of undefined constant php - assumed 'php' (this will throw an Error in a future version of PHP) in /home/qdxcz78681q7/public_html/desarrollos/estudio-contable/navbar.php on line 22
+[05-Jun-2019 14:05:28 UTC] PHP Notice:  Undefined variable: active_categorias in /home/qdxcz78681q7/public_html/desarrollos/estudio-contable/navbar.php on line 24
+[05-Jun-2019 14:05:28 UTC] PHP Warning:  Use of undefined constant php - assumed 'php' (this will throw an Error in a future version of PHP) in /home/qdxcz78681q7/public_html/desarrollos/estudio-contable/navbar.php on line 27
+[05-Jun-2019 14:10:01 UTC] PHP Warning:  Use of undefined constant php - assumed 'php' (this will throw an Error in a future version of PHP) in /home/qdxcz78681q7/public_html/desarrollos/estudio-contable/navbar.php on line 21
+[05-Jun-2019 14:10:01 UTC] PHP Warning:  Use of undefined constant php - assumed 'php' (this will throw an Error in a future version of PHP) in /home/qdxcz78681q7/public_html/desarrollos/estudio-contable/navbar.php on line 22
+[05-Jun-2019 14:10:01 UTC] PHP Notice:  Undefined variable: active_categorias in /home/qdxcz78681q7/public_html/desarrollos/estudio-contable/navbar.php on line 24
+[05-Jun-2019 14:10:01 UTC] PHP Warning:  Use of undefined constant php - assumed 'php' (this will throw an Error in a future version of PHP) in /home/qdxcz78681q7/public_html/desarrollos/estudio-contable/navbar.php on line 27
+[05-Jun-2019 14:14:22 UTC] PHP Warning:  Use of undefined constant php - assumed 'php' (this will throw an Error in a future version of PHP) in /home/qdxcz78681q7/public_html/desarrollos/estudio-contable/navbar.php on line 21
+[05-Jun-2019 14:14:22 UTC] PHP Warning:  Use of undefined constant php - assumed 'php' (this will throw an Error in a future version of PHP) in /home/qdxcz78681q7/public_html/desarrollos/estudio-contable/navbar.php on line 22
+[05-Jun-2019 14:14:22 UTC] PHP Notice:  Undefined variable: active_categorias in /home/qdxcz78681q7/public_html/desarrollos/estudio-contable/navbar.php on line 24
+[05-Jun-2019 14:14:22 UTC] PHP Warning:  Use of undefined constant php - assumed 'php' (this will throw an Error in a future version of PHP) in /home/qdxcz78681q7/public_html/desarrollos/estudio-contable/navbar.php on line 27
+[05-Jun-2019 14:21:20 UTC] PHP Warning:  Use of undefined constant php - assumed 'php' (this will throw an Error in a future version of PHP) in /home/qdxcz78681q7/public_html/desarrollos/estudio-contable/navbar.php on line 21
+[05-Jun-2019 14:21:20 UTC] PHP Warning:  Use of undefined constant php - assumed 'php' (this will throw an Error in a future version of PHP) in /home/qdxcz78681q7/public_html/desarrollos/estudio-contable/navbar.php on line 22
+[05-Jun-2019 14:21:20 UTC] PHP Notice:  Undefined variable: active_categorias in /home/qdxcz78681q7/public_html/desarrollos/estudio-contable/navbar.php on line 24
+[05-Jun-2019 14:21:20 UTC] PHP Warning:  Use of undefined constant php - assumed 'php' (this will throw an Error in a future version of PHP) in /home/qdxcz78681q7/public_html/desarrollos/estudio-contable/navbar.php on line 27
+[05-Jun-2019 14:38:07 UTC] PHP Notice:  Undefined index: user_login_status in /home/qdxcz78681q7/public_html/desarrollos/estudio-contable/clientes.php on line 8
+[05-Jun-2019 14:44:56 UTC] PHP Notice:  Undefined index: user_login_status in /home/qdxcz78681q7/public_html/desarrollos/estudio-contable/clientes.php on line 8
+[05-Jun-2019 14:45:05 UTC] PHP Warning:  Use of undefined constant php - assumed 'php' (this will throw an Error in a future version of PHP) in /home/qdxcz78681q7/public_html/desarrollos/estudio-contable/navbar.php on line 21
+[05-Jun-2019 14:45:05 UTC] PHP Warning:  Use of undefined constant php - assumed 'php' (this will throw an Error in a future version of PHP) in /home/qdxcz78681q7/public_html/desarrollos/estudio-contable/navbar.php on line 22
+[05-Jun-2019 14:45:05 UTC] PHP Notice:  Undefined variable: active_categorias in /home/qdxcz78681q7/public_html/desarrollos/estudio-contable/navbar.php on line 24
+[05-Jun-2019 14:45:05 UTC] PHP Warning:  Use of undefined constant php - assumed 'php' (this will throw an Error in a future version of PHP) in /home/qdxcz78681q7/public_html/desarrollos/estudio-contable/navbar.php on line 27
+[05-Jun-2019 15:35:43 UTC] PHP Notice:  Undefined index: user_login_status in /home/qdxcz78681q7/public_html/desarrollos/estudio-contable/clientes.php on line 8
