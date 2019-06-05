@@ -1,6 +1,6 @@
 
 <?php
-    error_reporting(E_ALL & ~E_DEPRECATED);
+    //error_reporting(E_ALL & ~E_DEPRECATED);
     include('../is_logged.php');//Archivo verifica que el usario que intenta acceder a la URL esta logueado
     /*Inicia validacion del lado del servidor*/
 
@@ -33,29 +33,70 @@
                 if (isset($_POST['send'])){
                     include("../../classes/sendemail.php");//Mando a llamar la funcion que se encarga de enviar el correo electronico
                     
-                    $sql_cliente = " SELECT * FROM clientes WHERE id_cliente = ".$_POST['cliente'];
+                    $sql_cliente = " SELECT * FROM clientes WHERE id_cliente = ".$cliente;
                     $get_cliente = mysqli_query($con,$sql_cliente);
                     $nombre = '';
                     $correo = '';
                     while ($row=mysqli_fetch_array($get_cliente)){
-                        $nombre =$row['nombre_cliente']; 
-                        $correo =$row['email_cliente']; 
+                        $nombre     =$row['nombre_cliente']; 
+                        $correo     =$row['email_cliente']; 
+                        $telefono   =$row['telefono_cliente']; 
                     }
                     if (empty(trim($nombre))){ $nombre ='Anonimo';}
-                    if (empty(trim($correo))){ $correo ='anonimo@anonimo.com';}
-                    /*Configuracion de variables para enviar el correo*/
-                    $mail_username="jvazquez.jlv@gmail.com";//Correo electronico saliente ejemplo: tucorreo@gmail.com
-                    $mail_userpassword="notecomasalgato";//Tu contraseña de gmail
-                    $mail_addAddress="vazquezjluis@yahoo.com";//correo electronico que recibira el mensaje
-                    $template="email_template.html";//Ruta de la plantilla HTML para enviar nuestro mensaje
-                    
-                    /*Inicio captura de datos enviados por $_POST para enviar el correo */
-                    $mail_setFromEmail=$correo;
-                    $mail_setFromName=$nombre;
-                    $txt_message=$mensaje;
-                    $mail_subject=$asunto;
-                    
-                    sendemail($mail_username,$mail_userpassword,$mail_setFromEmail,$mail_setFromName,$mail_addAddress,$txt_message,$mail_subject,$template);//Enviar el mensaje
+                    if (empty(trim($correo))){ $correo =' El usuario no tiene cargado un correo.';}
+                    if (empty(trim($telefono))){ $telefono ='El usuario no tiene cargado un telefono.';}
+
+                    // Varios destinatarios
+                    $para  = 'vazquezjluis@yahoo.com' . ', '; // atención a la coma
+                    $para .= 'jlvazquez@audired.com.ar';
+
+                    // título
+                    $título = 'Mensaje del cliente '.$nombre;
+
+                    // mensaje
+                    $menssage = '
+                    <html>
+                    <head>
+                        <title>Enviado desde el sistema contable</title>
+                    </head>
+                    <body>
+                        <p>'.$asunto.'</p>
+                        <p>'.$mensaje.'</p>
+                        <table>
+                            <tr>
+                                <th>'.$nombre.'</th>
+                            </tr>
+                            <tr>
+                                <td>'.$correo.'</td>
+                            </tr>
+                            <tr>
+                                <td>'.$telefono.'</td>
+                            </tr>
+                        </table>
+                        <hr>
+                        <table>
+                            <tr>
+                                <td>By J.L.Vazquez - <a href="https://www.control-app.com "><b> Control-App.com</b></a></td>
+                            </tr>
+                        </table>
+                    </body>
+                    </html>
+                    ';
+
+                    // Para enviar un correo HTML, debe establecerse la cabecera Content-type
+                    $cabeceras  = 'MIME-Version: 1.0' . "\r\n";
+                    $cabeceras .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+
+                    // Cabeceras adicionales
+                    //$cabeceras .= 'To: Mary <mary@example.com>, Kelly <kelly@example.com>' . "\r\n";
+                    $cabeceras .= 'From: Control-App <info@control-app.com>' . "\r\n";
+                    // $cabeceras .= 'Cc: birthdayarchive@example.com' . "\r\n";
+                    // $cabeceras .= 'Bcc: birthdaycheck@example.com' . "\r\n";
+
+
+                    //envia el mensaje
+                    mail($para, $título, $menssage, $cabeceras);
+
                 }
         } else{
             $errors []= "Ocurrio un error al intentar guardar el mensaje.".mysqli_error($con);
