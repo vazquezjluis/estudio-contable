@@ -27,6 +27,7 @@
 		$clave=mysqli_real_escape_string($con,(strip_tags($_POST["mod_clave"],ENT_QUOTES)));
 		$honorario=mysqli_real_escape_string($con,(strip_tags($_POST["mod_honorarios"],ENT_QUOTES)));
 		$condicion_iva=mysqli_real_escape_string($con,(strip_tags($_POST["mod_condicion"],ENT_QUOTES)));
+		$actividad=mysqli_real_escape_string($con,(strip_tags($_POST["mod_actividad"],ENT_QUOTES)));
 		
 		
 		$id_cliente=intval($_POST['mod_id']);
@@ -40,6 +41,7 @@
 			clave='".$clave."', 
 			honorario='".$honorario."', 
 			condicion_iva='".$condicion_iva."', 
+			actividad='".$actividad."', 
 			date_added='".$date_added."' 
 		WHERE id_cliente='".$id_cliente."'";
 		

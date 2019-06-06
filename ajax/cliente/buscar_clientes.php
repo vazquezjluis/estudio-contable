@@ -80,8 +80,10 @@
 					<th>Dirección</th> -->
 					<th>Cuit</th>
 					<th>Condicion IVA</th>
+					<th>Actividad</th>
 					<th>Inicio de actividades</th>
 					<th>Honorarios</th>
+					<th>Ultimo mensaje</th>
 					<th>Documentos</th>
 					<th class='text-right'>Acciones</th>
 					
@@ -90,6 +92,7 @@
 				while ($row=mysqli_fetch_array($query)){
 						$id_cliente=$row['id_cliente'];
 						$nombre_cliente=$row['nombre_cliente'];
+						$actividad=$row['actividad'];
 						$telefono_cliente=$row['telefono_cliente'];
 						$email_cliente=$row['email_cliente'];
 						$direccion_cliente=$row['direccion_cliente'];
@@ -120,6 +123,16 @@
 							3=>"Form. 960",
 							4=>"Credencial de Pago"
 						);
+
+						//mensaje del cliente
+						$sql_mensaje="SELECT * FROM  mensajes WHERE cliente = ".$id_cliente." AND destino = 'cliente' ORDER BY  id_mensaje DESC LIMIT 1 " ;
+						$query_mensaje = mysqli_query($con, $sql_mensaje);
+						$class = array(
+							0=>"well",
+							1=>"alert alert-success",
+							2=>"alert alert-warning",
+							3=>"alert alert-danger"
+						  );
 						
 					?>
 					
@@ -135,6 +148,7 @@
 					<input type="hidden" value="<?php echo $honorarios;?>" id="honorarios<?php echo $id_cliente;?>">
 					<input type="hidden" value="<?php echo $usuario;?>" id="usuario<?php echo $id_cliente;?>">
 					<input type="hidden" value="<?php echo $clave;?>" id="clave<?php echo $id_cliente;?>">
+					<input type="hidden" value="<?php echo $actividad;?>" id="actividad<?php echo $id_cliente;?>">
 					
 					<tr>
 						
@@ -145,8 +159,24 @@
 						<td><?php //echo $estado;?></td> -->
 						<td><?php echo $cuit;?></td>
 						<td><?php echo $condicion_iva." ".$categoria;?></td>
+						<td><?php echo $actividad;?></td>
 						<td><?php echo $fecha_inicio;?></td>
 						<td><?php echo "$ ".$honorarios;?></td>
+						<td>
+							<?php
+								if ($query_mensaje->num_rows!=0){
+									$visto = '';
+									while($men= mysqli_fetch_array($query_mensaje)){
+										if ($men['visto']!='0'){
+											$visto = '<span class="glyphicon glyphicon-eye-open" title="Visto '.date("d/m/Y h:m", strtotime($men['visto'])).'"></span>';
+										}
+										echo  "<div class='".$class[$men['prioridad']]."' style='padding:1%; margin-bottom:0px;' title='".$men['mensaje']."'>".substr($men['mensaje'], 0, 20)."...".$visto."</div>";
+									}
+								} else{
+									echo "...";
+								}
+						 
+						 ?></td>
 						<td>
 						
 							<ul>

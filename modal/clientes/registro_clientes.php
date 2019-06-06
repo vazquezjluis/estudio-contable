@@ -42,6 +42,18 @@
 					</div>
 				</div>
 
+
+			  <div class="form-group form-group-sm">
+					<label for="actividad" class="col-sm-3 control-label">Actividad *</label>
+					<div class="col-sm-8">
+						<select class="form-control" id="actividad" name="actividad"  required>
+							<option value="">-- Selecciones--</option>
+							<option value="Locaciones y/o prestaciones de servicios">Locaciones y/o prestaciones de servicios</option>
+							<option value="Venta de Cosas Muebles">Venta de Cosas Muebles</option>
+						</select>
+					</div>
+				</div>
+
 			  <div class="form-group form-group-sm"  >
 					<label for="categoria" class="col-sm-3 control-label">Categoria *</label>
 					<div class="col-sm-2">
@@ -102,19 +114,6 @@
 					<textarea class="form-control" id="direccion" name="direccion"   maxlength="255" ></textarea>				  
 				</div>
 			  </div>
-			  
-			  <!-- <div class="form-group">
-				<label for="estado" class="col-sm-3 control-label">Estado</label>
-				<div class="col-sm-8">
-				 <select class="form-control" id="estado" name="estado" required>
-					<option value="">-- Selecciona estado --</option>
-					<option value="1" selected>Activo</option>
-					<option value="0">Inactivo</option>
-				  </select>
-				</div>
-			  </div> -->
-			 
-			 
 			 
 			
 		  </div>

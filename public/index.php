@@ -34,9 +34,19 @@ foreach($categorias as $k =>$v){
 $monto_a_pagar            = getMontoAPagar(trim($_SESSION['cliente_categoria']));//Es el monto que figura en la categoria
 $facturacion_actual       = getFacturacionActual($_SESSION['cliente_id']);//Suma de la facturacion hasta el momento 
 $mes_incompleto           = mesIncompleto($facturacion_actual);//meses que restan para la proxima recategorizacion
-$monto_a_facturar_por_mes = ( $monto_a_pagar - $facturacion_actual[4]['total_ingreso'] ) / $mes_incompleto;
+$monto_limite_categoria   = monto_limite_categoria(trim($_SESSION['cliente_categoria']));
+$monto_a_facturar_por_mes = ( $monto_limite_categoria - $facturacion_actual[4]['total_ingreso'] ) / $mes_incompleto;
 $monto_a_pagar_sig_cate   = getMontoAPagar($siguiente_categoria);
  
+// echo '<pre>';
+// var_dump($mes_incompleto);
+// var_dump($monto_limite_categoria);
+// var_dump($facturacion_actual[4]['total_ingreso']);
+// echo '</pre>';
+
+
+
+
 
 //Documentos del cliente
 $sql_documento="SELECT * FROM  documentos WHERE cliente = ".$_SESSION['cliente_id'];
@@ -189,9 +199,8 @@ $class = array(
             <div class="well" style="background-color:#ffff">
             <h5><i><b>Enviar un mensaje al contador </b></i><span class="glyphicon glyphicon-send"></span></h5>
               <form method="post" id="guardar_mensaje" name="guardar_mensaje">
-                  <div class="form-group">
-                    <div id="mensaje_ajax"></div>
-                  </div>
+                  
+                  <div id="mensaje_ajax"></div>
                   <div class="form-group">
                     <input type="text" class="form-control" id="asunto" name="asunto" placeholder="Asunto" required>
                   </div>
@@ -233,10 +242,10 @@ $class = array(
 		        url: "../ajax/cliente/mensaje.php",
 		        data: parametros,
 		        beforeSend: function(objeto) {
-		            $("#resultados_ajax").html("Mensaje: Enviando...");
+		            $("#mensaje_ajax").html("Mensaje: Enviando...");
 		        },
 		        success: function(datos) {
-		            $("#resultados_ajax").html(datos);
+		            $("#mensaje_ajax").html(datos);
 		            $('#enviar_mensaje').attr("disabled", false);
 		            $('#guardar_mensaje')[0].reset();
 		            //load(1);

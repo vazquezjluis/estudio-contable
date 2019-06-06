@@ -7,3 +7,42 @@
 [31-May-2019 16:33:17 UTC] PHP Notice:  Undefined index: mod_condicion in /home/qdxcz78681q7/public_html/desarrollos/estudio-contable/ajax/cliente/nuevo_cliente.php on line 16
 [31-May-2019 16:33:51 UTC] PHP Notice:  Undefined index: mod_condicion in /home/qdxcz78681q7/public_html/desarrollos/estudio-contable/ajax/cliente/nuevo_cliente.php on line 16
 [03-Jun-2019 16:45:47 UTC] PHP Warning:  mysqli_num_rows() expects parameter 1 to be mysqli_result, boolean given in /home/qdxcz78681q7/public_html/desarrollos/estudio-contable/ajax/cliente/buscar_clientes.php on line 17
+[04-Jun-2019 23:06:40 UTC] PHP Notice:  Undefined index: cliente in /home/qdxcz78681q7/public_html/desarrollos/estudio-contable/ajax/cliente/mensaje.php on line 36
+[04-Jun-2019 23:06:40 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/qdxcz78681q7/public_html/desarrollos/estudio-contable/ajax/cliente/mensaje.php on line 40
+[04-Jun-2019 23:07:12 UTC] PHP Notice:  Undefined index: cliente in /home/qdxcz78681q7/public_html/desarrollos/estudio-contable/ajax/cliente/mensaje.php on line 36
+[04-Jun-2019 23:07:12 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/qdxcz78681q7/public_html/desarrollos/estudio-contable/ajax/cliente/mensaje.php on line 40
+[04-Jun-2019 23:09:43 UTC] PHP Notice:  Undefined index: cliente in /home/qdxcz78681q7/public_html/desarrollos/estudio-contable/ajax/cliente/mensaje.php on line 36
+[04-Jun-2019 23:09:43 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/qdxcz78681q7/public_html/desarrollos/estudio-contable/ajax/cliente/mensaje.php on line 40
+[04-Jun-2019 23:16:57 UTC] PHP Notice:  Undefined index: cliente in /home/qdxcz78681q7/public_html/desarrollos/estudio-contable/ajax/cliente/mensaje.php on line 36
+[04-Jun-2019 23:16:57 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/qdxcz78681q7/public_html/desarrollos/estudio-contable/ajax/cliente/mensaje.php on line 40
+[04-Jun-2019 23:19:41 UTC] PHP Notice:  Undefined index: cliente in /home/qdxcz78681q7/public_html/desarrollos/estudio-contable/ajax/cliente/mensaje.php on line 36
+[04-Jun-2019 23:19:41 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/qdxcz78681q7/public_html/desarrollos/estudio-contable/ajax/cliente/mensaje.php on line 40
+[04-Jun-2019 23:19:41 UTC] PHP Deprecated:  __autoload() is deprecated, use spl_autoload_register() instead in /home/qdxcz78681q7/public_html/desarrollos/estudio-contable/classes/PHPMailer/PHPMailerAutoload.php on line 45
+[04-Jun-2019 23:20:32 UTC] PHP Notice:  Undefined index: cliente in /home/qdxcz78681q7/public_html/desarrollos/estudio-contable/ajax/cliente/mensaje.php on line 36
+[04-Jun-2019 23:20:32 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/qdxcz78681q7/public_html/desarrollos/estudio-contable/ajax/cliente/mensaje.php on line 40
+[04-Jun-2019 23:20:32 UTC] PHP Deprecated:  __autoload() is deprecated, use spl_autoload_register() instead in /home/qdxcz78681q7/public_html/desarrollos/estudio-contable/classes/PHPMailer/PHPMailerAutoload.php on line 45
+[04-Jun-2019 23:21:58 UTC] PHP Notice:  Undefined index: cliente in /home/qdxcz78681q7/public_html/desarrollos/estudio-contable/ajax/cliente/mensaje.php on line 36
+[04-Jun-2019 23:21:58 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/qdxcz78681q7/public_html/desarrollos/estudio-contable/ajax/cliente/mensaje.php on line 40
+[04-Jun-2019 23:21:58 UTC] PHP Deprecated:  __autoload() is deprecated, use spl_autoload_register() instead in /home/qdxcz78681q7/public_html/desarrollos/estudio-contable/classes/PHPMailer/PHPMailerAutoload.php on line 45
+[04-Jun-2019 23:30:51 UTC] PHP Notice:  Undefined index: cliente in /home/qdxcz78681q7/public_html/desarrollos/estudio-contable/ajax/cliente/mensaje.php on line 36
+[04-Jun-2019 23:30:51 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/qdxcz78681q7/public_html/desarrollos/estudio-contable/ajax/cliente/mensaje.php on line 40
+[04-Jun-2019 23:30:51 UTC] PHP Deprecated:  __autoload() is deprecated, use spl_autoload_register() instead in /home/qdxcz78681q7/public_html/desarrollos/estudio-contable/classes/PHPMailer/PHPMailerAutoload.php on line 45
+[04-Jun-2019 23:50:12 UTC] PHP Parse error:  syntax error, unexpected '<', expecting end of file in /home/qdxcz78681q7/public_html/desarrollos/estudio-contable/classes/sendemail.php on line 40
+[05-Jun-2019 05:00:57 UTC] PHP Warning:  include(../../classes/sendemail.php): failed to open stream: No such file or directory in /home/qdxcz78681q7/public_html/desarrollos/estudio-contable/ajax/cliente/mensaje.php on line 34
+[05-Jun-2019 05:00:57 UTC] PHP Warning:  include(): Failed opening '../../classes/sendemail.php' for inclusion (include_path='.:/opt/alt/php72/usr/share/pear') in /home/qdxcz78681q7/public_html/desarrollos/estudio-contable/ajax/cliente/mensaje.php on line 34
+[05-Jun-2019 05:05:13 UTC] PHP Warning:  include(../../classes/sendemail.php): failed to open stream: No such file or directory in /home/qdxcz78681q7/public_html/desarrollos/estudio-contable/ajax/cliente/mensaje.php on line 34
+[05-Jun-2019 05:05:13 UTC] PHP Warning:  include(): Failed opening '../../classes/sendemail.php' for inclusion (include_path='.:/opt/alt/php72/usr/share/pear') in /home/qdxcz78681q7/public_html/desarrollos/estudio-contable/ajax/cliente/mensaje.php on line 34
+[05-Jun-2019 05:26:23 UTC] PHP Warning:  include(../../classes/sendemail.php): failed to open stream: No such file or directory in /home/qdxcz78681q7/public_html/desarrollos/estudio-contable/ajax/cliente/mensaje.php on line 34
+[05-Jun-2019 05:26:23 UTC] PHP Warning:  include(): Failed opening '../../classes/sendemail.php' for inclusion (include_path='.:/opt/alt/php72/usr/share/pear') in /home/qdxcz78681q7/public_html/desarrollos/estudio-contable/ajax/cliente/mensaje.php on line 34
+[05-Jun-2019 18:51:08 UTC] PHP Notice:  Undefined index: actividad in /home/qdxcz78681q7/public_html/desarrollos/estudio-contable/ajax/cliente/buscar_clientes.php on line 95
+[05-Jun-2019 18:57:48 UTC] PHP Notice:  Undefined index: actividad in /home/qdxcz78681q7/public_html/desarrollos/estudio-contable/ajax/cliente/buscar_clientes.php on line 95
+[05-Jun-2019 19:01:27 UTC] PHP Notice:  Undefined index: actividad in /home/qdxcz78681q7/public_html/desarrollos/estudio-contable/ajax/cliente/buscar_clientes.php on line 95
+[05-Jun-2019 19:02:10 UTC] PHP Notice:  Undefined index: actividad in /home/qdxcz78681q7/public_html/desarrollos/estudio-contable/ajax/cliente/buscar_clientes.php on line 95
+[05-Jun-2019 19:03:40 UTC] PHP Notice:  Undefined index: actividad in /home/qdxcz78681q7/public_html/desarrollos/estudio-contable/ajax/cliente/buscar_clientes.php on line 95
+[05-Jun-2019 19:11:17 UTC] PHP Notice:  Undefined index: actividad in /home/qdxcz78681q7/public_html/desarrollos/estudio-contable/ajax/cliente/buscar_clientes.php on line 95
+[05-Jun-2019 19:11:26 UTC] PHP Notice:  Undefined index: actividad in /home/qdxcz78681q7/public_html/desarrollos/estudio-contable/ajax/cliente/buscar_clientes.php on line 95
+[05-Jun-2019 19:11:50 UTC] PHP Notice:  Undefined index: actividad in /home/qdxcz78681q7/public_html/desarrollos/estudio-contable/ajax/cliente/buscar_clientes.php on line 95
+[05-Jun-2019 19:18:07 UTC] PHP Notice:  Undefined index: actividad in /home/qdxcz78681q7/public_html/desarrollos/estudio-contable/ajax/cliente/buscar_clientes.php on line 95
+[05-Jun-2019 19:20:30 UTC] PHP Notice:  Undefined index: actividad in /home/qdxcz78681q7/public_html/desarrollos/estudio-contable/ajax/cliente/buscar_clientes.php on line 95
+[05-Jun-2019 19:24:29 UTC] PHP Notice:  Undefined index: actividad in /home/qdxcz78681q7/public_html/desarrollos/estudio-contable/ajax/cliente/buscar_clientes.php on line 95
+[05-Jun-2019 19:38:33 UTC] PHP Notice:  Undefined index: actividad in /home/qdxcz78681q7/public_html/desarrollos/estudio-contable/ajax/cliente/buscar_clientes.php on line 95

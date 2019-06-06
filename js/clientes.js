@@ -107,7 +107,7 @@
 		            $("#mensaje_ajax").html(datos);
 		            $('#enviar_mensaje').attr("disabled", false);
 		            $('#guardar_mensaje')[0].reset();
-		            //load(1);
+		            load(1);
 		        }
 		    });
 		    event.preventDefault();
@@ -165,20 +165,25 @@
 		 * Para mostrar o no mostrar la categoria
 		 */
 		$("select").change(function(event) {
-		    var prefijo = "";
-		    if ($(this).attr("id") === "condicion") {
-		        //cuando es creadion de cliente
-		    } else {
-		        prefijo = "mod_"; //cuando es modificacion
-		    }
-		    if ($(this).val() == "Monotributo") {
-		        $("#" + prefijo + "categoria").removeAttr("readonly");
-		        $("#" + prefijo + "categoria").attr("required");
-		        $("#" + prefijo + "categoria").val("");
-		    } else {
-		        $("#" + prefijo + "categoria").attr("readonly", "readonly");
-		        $("#" + prefijo + "categoria").val("");
-		    };
+			/** Solo para los selecct de condicion en la creacion y edicion del clilente*/
+			if ($(this).attr("id") === "condicion" || $(this).attr("id") === "mod_condicion" ){
+				var prefijo = "";
+				if ($(this).attr("id") === "condicion") {
+					//cuando es creadion de cliente
+				} else {
+					prefijo = "mod_"; //cuando es modificacion
+				}
+				
+				if ($(this).val() == "Monotributo") {
+					$("#" + prefijo + "categoria").removeAttr("readonly");
+					$("#" + prefijo + "categoria").attr("required");
+					$("#" + prefijo + "categoria").val("");
+				} else {
+					$("#" + prefijo + "categoria").attr("readonly", "readonly");
+					$("#" + prefijo + "categoria").val("");
+				};
+			}
+			
 		});
 
 		function obtener_datos(id) {
@@ -194,6 +199,7 @@
 		    var usuario = $("#usuario" + id).val();
 		    var clave = $("#clave" + id).val();
 		    var condicion_iva = $("#condicion_iva" + id).val();
+		    var actividad = $("#actividad" + id).val();
 
 		    $("#mod_nombre").val(nombre_cliente);
 		    $("#mod_telefono").val(telefono_cliente);
@@ -213,7 +219,10 @@
 		    } else {
 		        $("#mod_categoria").attr("readonly", "readonly");
 		        $("#mod_categoria").val(" ");
-		    }
+			}
+			
+		    $("#mod_actividad option[value='" + actividad + "']").attr("selected", "selected");
+		    
 
 		}
 

@@ -31,7 +31,7 @@
 	
 	?>
 	
-	<div class="container">
+	<div class="container-fluid">
 	<div class="panel panel-default">
 		<div class="panel-heading">
 		    <div class="btn-group pull-right">
@@ -61,7 +61,7 @@
 			<div class='outer_div'></div><!-- Carga los datos ajax -->
 			
   
-</div>
+	</div>
 		 
 	</div>
 	<hr>
