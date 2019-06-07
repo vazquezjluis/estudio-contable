@@ -165,6 +165,27 @@
 		 * Para mostrar o no mostrar la categoria
 		 */
 		$("select").change(function(event) {
+
+		    /** Solo para los selecct de condicion en la creacion y edicion del clilente*/
+		    if ($(this).attr("id") === "condicion" || $(this).attr("id") === "mod_condicion") {
+		        var prefijo = "";
+		        if ($(this).attr("id") === "condicion") {
+		            //cuando es creadion de cliente
+		        } else {
+		            prefijo = "mod_"; //cuando es modificacion
+		        }
+
+		        if ($(this).val() == "Monotributo") {
+		            $("#" + prefijo + "categoria").removeAttr("readonly");
+		            $("#" + prefijo + "categoria").attr("required");
+		            $("#" + prefijo + "categoria").val("");
+		        } else {
+		            $("#" + prefijo + "categoria").attr("readonly", "readonly");
+		            $("#" + prefijo + "categoria").val("");
+		        };
+		    }
+
+
 		    /** Solo para los selecct de condicion en la creacion y edicion del clilente*/
 		    if ($(this).attr("id") === "condicion" || $(this).attr("id") === "mod_condicion") {
 		        var prefijo = "";
@@ -220,6 +241,9 @@
 		        $("#mod_categoria").attr("readonly", "readonly");
 		        $("#mod_categoria").val(" ");
 		    }
+
+		    $("#mod_actividad option[value='" + actividad + "']").attr("selected", "selected");
+
 
 		    $("#mod_actividad option[value='" + actividad + "']").attr("selected", "selected");
 
