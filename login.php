@@ -40,7 +40,7 @@ else {
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
   <title>Estudio contable</title>
 	<!-- Latest compiled and minified CSS -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+	<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous"> -->
   <!-- CSS  -->
    <!-- <link href="css/login2.css" type="text/css" rel="stylesheet" media="screen,projection"/> -->
 
@@ -71,7 +71,7 @@ else {
 				
 					
 						
-						<a class="serviceStatusRedirect" style="margin-top:50%;" name="serviceRedirect" href="http://www.control-app.com/"><i class="fa fa-copyright" aria-hidden="true"> &copy J.L. Vazquez - Control-App.com <?=date('Y')?></i></a>
+						<a class="serviceStatusRedirect" style="margin-top:50%;" name="serviceRedirect" href="http://www.control-app.com/"><i class="fa fa-copyright" aria-hidden="true"> &copy <?=date('Y')?> J.L. Vazquez - Control-App.com </i></a>
 								
 
 					</form>
@@ -82,7 +82,7 @@ else {
 	</div>
 	
 	<div class="brand" style="background-image: url('img/fondo.jpeg')">
-		<h3 style="color:#ffff"><b>OLIMPUS</b></h3>
+		<h1 style="color:#ffff; margin-top:5%;"><b>OLIMPUS</b></h1>
 	</div>
 
 
