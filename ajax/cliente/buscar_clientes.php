@@ -84,6 +84,7 @@
 					<th>Inicio de actividades</th>
 					<th>Honorarios</th>
 					<th>Ultimo mensaje</th>
+					<th>Vencimiento IIBB</th>
 					<th>Documentos</th>
 					<th class='text-right'>Acciones</th>
 					
@@ -103,6 +104,7 @@
 						$honorarios=$row['honorario'];
 						$usuario=$row['usuario'];
 						$clave=$row['clave'];
+						$f_vencimiento_iibb=$row['f_vencimiento_iibb'];
 						$date_added=date('Y-m-d', strtotime($row['date_added']));
 						if ($status_cliente==1){$estado="Activo";}
 						else {$estado="Inactivo";}
@@ -121,7 +123,8 @@
 							1=>"inscripcion de AFIP",
 							2=>"inscripcion de IIBB",
 							3=>"Form. 960",
-							4=>"Credencial de Pago"
+							4=>"Credencial de Pago",
+							5=>"Liquidacion de Ingresos Brutos",
 						);
 
 						//mensaje del cliente
@@ -149,6 +152,7 @@
 					<input type="hidden" value="<?php echo $usuario;?>" id="usuario<?php echo $id_cliente;?>">
 					<input type="hidden" value="<?php echo $clave;?>" id="clave<?php echo $id_cliente;?>">
 					<input type="hidden" value="<?php echo $actividad;?>" id="actividad<?php echo $id_cliente;?>">
+					<input type="hidden" value="<?php echo $f_vencimiento_iibb;?>" id="f_vencimiento_iibb<?php echo $id_cliente;?>">
 					
 					<tr>
 						
@@ -177,6 +181,8 @@
 								}
 						 
 						 ?></td>
+
+						<td><input type="date" name="f_vencimiento_iibb" id="f_vencimiento_iibb" onfocusout="upVencimientoIIBB(<?php echo $id_cliente;?>, this.value)" value="<?php echo $f_vencimiento_iibb;?>"></td> 
 						<td>
 						
 							<ul>

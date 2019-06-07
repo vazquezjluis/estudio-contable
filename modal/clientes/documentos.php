@@ -27,6 +27,7 @@
 							<option value="2">Inscripcion de IIBB</option>
 							<option value="3">Form. 960</option>
 							<option value="4">Credencial de pago</option>							
+							<option value="5">Liquidacion de IIBB</option>							
 						</select>
 					</div>
 			    </div>

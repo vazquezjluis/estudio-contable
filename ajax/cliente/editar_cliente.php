@@ -15,19 +15,19 @@
 		require_once ("../../config/db.php");//Contiene las variables de configuracion para conectar a la base de datos
 		require_once ("../../config/conexion.php");//Contiene funcion que conecta a la base de datos
 		// escaping, additionally removing everything that could be (html/javascript-) code
-		$nombre=mysqli_real_escape_string($con,(strip_tags($_POST["mod_nombre"],ENT_QUOTES)));
-		$telefono=mysqli_real_escape_string($con,(strip_tags($_POST["mod_telefono"],ENT_QUOTES)));
-		$email=mysqli_real_escape_string($con,(strip_tags($_POST["mod_email"],ENT_QUOTES)));
-		$direccion=mysqli_real_escape_string($con,(strip_tags($_POST["mod_direccion"],ENT_QUOTES)));
-		$cuit=mysqli_real_escape_string($con,(strip_tags($_POST["mod_cuit"],ENT_QUOTES)));
-		//$estado=intval($_POST['mod_estado']);
-		$categoria=mysqli_real_escape_string($con,(strip_tags($_POST["mod_categoria"],ENT_QUOTES)));
-		$date_added=mysqli_real_escape_string($con,(strip_tags($_POST["mod_date_added"],ENT_QUOTES)));
-		$usuario=mysqli_real_escape_string($con,(strip_tags($_POST["mod_usuario"],ENT_QUOTES)));
-		$clave=mysqli_real_escape_string($con,(strip_tags($_POST["mod_clave"],ENT_QUOTES)));
-		$honorario=mysqli_real_escape_string($con,(strip_tags($_POST["mod_honorarios"],ENT_QUOTES)));
-		$condicion_iva=mysqli_real_escape_string($con,(strip_tags($_POST["mod_condicion"],ENT_QUOTES)));
-		$actividad=mysqli_real_escape_string($con,(strip_tags($_POST["mod_actividad"],ENT_QUOTES)));
+		$nombre				=mysqli_real_escape_string($con,(strip_tags($_POST["mod_nombre"],ENT_QUOTES)));
+		$telefono			=mysqli_real_escape_string($con,(strip_tags($_POST["mod_telefono"],ENT_QUOTES)));
+		$email				=mysqli_real_escape_string($con,(strip_tags($_POST["mod_email"],ENT_QUOTES)));
+		$direccion			=mysqli_real_escape_string($con,(strip_tags($_POST["mod_direccion"],ENT_QUOTES)));
+		$cuit				=mysqli_real_escape_string($con,(strip_tags($_POST["mod_cuit"],ENT_QUOTES)));
+		$categoria			=mysqli_real_escape_string($con,(strip_tags($_POST["mod_categoria"],ENT_QUOTES)));
+		$date_added			=mysqli_real_escape_string($con,(strip_tags($_POST["mod_date_added"],ENT_QUOTES)));
+		//$f_vencimiento_iibb	=mysqli_real_escape_string($con,(strip_tags($_POST["f_vencimiento_iibb"],ENT_QUOTES)));
+		$usuario			=mysqli_real_escape_string($con,(strip_tags($_POST["mod_usuario"],ENT_QUOTES)));
+		$clave				=mysqli_real_escape_string($con,(strip_tags($_POST["mod_clave"],ENT_QUOTES)));
+		$honorario			=mysqli_real_escape_string($con,(strip_tags($_POST["mod_honorarios"],ENT_QUOTES)));
+		$condicion_iva		=mysqli_real_escape_string($con,(strip_tags($_POST["mod_condicion"],ENT_QUOTES)));
+		$actividad			=mysqli_real_escape_string($con,(strip_tags($_POST["mod_actividad"],ENT_QUOTES)));
 		
 		
 		$id_cliente=intval($_POST['mod_id']);

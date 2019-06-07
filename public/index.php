@@ -56,7 +56,8 @@ $tipo_documento = array(
   1=>"inscripcion de AFIP",
   2=>"inscripcion de IIBB",
   3=>"Form. 960",
-  4=>"Credencial de Pago"
+  4=>"Credencial de Pago",
+  5=>"Liquidacion de Ingresos Brutos"
 );
 $sql_mensaje="SELECT * FROM  mensajes WHERE cliente = ".$_SESSION['cliente_id']." AND visto = '0' AND destino = 'cliente' ";
 
@@ -172,22 +173,30 @@ $class = array(
                     
                       <ul>
                       <?php
+                        $btn_liqIIBB ='';
                         if ($query_documentos->num_rows!=0){
                           while($doc= mysqli_fetch_array($query_documentos)){
-                            ?>
-                              <li><a href="../<?php echo $doc['ruta']?>" target="_blanck"> <?php echo $tipo_documento[$doc['tipo']]; ?> <span class="glyphicon glyphicon-download-alt"></span></a></li>
-                            <?php
+                            if ($doc['tipo']==5){ 
+                              $btn_liqIIBB= '  <a href="../'.$doc['ruta'].'" target="_blanck" style="margin-top:3%;"  class="btn btn-primary btn-sm btn-block" > '. $tipo_documento[$doc['tipo']].' <span class="glyphicon glyphicon-download-alt"></span></a>';
+                            
+                            }else{
+                                ?>
+                                <li>
+                                  <a href="../<?php echo $doc['ruta']?>" target="_blanck"> <?php echo $tipo_documento[$doc['tipo']]; ?> <span class="glyphicon glyphicon-download-alt"></span></a>
+                                </li>
+                              <?php
+                            }
+                            
                           }
                         } else{
                           echo " <br>Sin documentos cargados<br>";
                         }
                         ?>
                       </ul>
+
+                      <?php echo $btn_liqIIBB;?>
                 </li>
             </ul>
-            <button type="button" style="margin-top:" name="" id="" class="btn btn-primary btn-sm btn-block">
-              Liquidacion mensual de Ingresos Brutos
-            </button>
             <h4>Honararios $<?php echo $_SESSION['cliente_honorario'];?></h4>
           </div>
           <div class="col-md-6">
