@@ -22,8 +22,21 @@
         <li class="<?php// echo $active_productos;?>"><a href="productos.php"><i class='glyphicon glyphicon-barcode'></i> Productos</a></li> -->
         <li class="<?php echo $active_clientes;?>"><a href="clientes.php"><i class='glyphicon glyphicon-user'></i> Clientes</a><span class="sr-only">(current)</span></li>
         <li class="<?php echo $active_categorias;?>"><a href="categorias.php"><i  class='glyphicon glyphicon-list-alt'></i> Categorias</a></li>
-        <li class="<?php  echo $active_usuarios;?>"><a href="usuarios.php"><i  class='glyphicon glyphicon-lock'></i> Usuarios</a></li>
         
+        
+        
+        <li class="dropdown <?php  echo $active_vencimientos;?>">
+          
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i  class='glyphicon glyphicon-calendar'></i> Vencimientos <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="vencimientos.php">Clientes</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="VencimientosIIBBlocales.php">IIBB Contribuyentes locales</a></li>
+          </ul>
+        </li>
+
+
+        <li class="<?php  echo $active_usuarios;?>"><a href="usuarios.php"><i  class='glyphicon glyphicon-lock'></i> Usuarios</a></li>
         <!-- <li class="<?php// if(isset($active_perfil)){echo $active_perfil;}?>"><a href="perfil.php"><i  class='glyphicon glyphicon-cog'></i> Configuración</a></li> -->
        </ul>
       <ul class="nav navbar-nav navbar-right">

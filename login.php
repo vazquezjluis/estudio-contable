@@ -70,8 +70,10 @@ else {
 						<input type="submit" class="button submitButton" value="Ingresar"  name="login" id="submit" >
 				
 					
+						<footer style="margin-top:50%;width:100%;font-size:10px;bottom:2%;color:#ccc;position:absolute;" >
+							<a   href="http://www.control-app.com/"><i class="fa fa-copyright" aria-hidden="true"> &copy <?=date('Y')?> J.L. Vazquez (www.control-app.com)</i></a><a href="#"> & C. Schumacher</a>
+						</footer>
 						
-						<a class="serviceStatusRedirect" style="margin-top:50%;" name="serviceRedirect" href="http://www.control-app.com/"><i class="fa fa-copyright" aria-hidden="true"> &copy <?=date('Y')?> J.L. Vazquez - Control-App.com </i></a>
 								
 
 					</form>
@@ -82,7 +84,7 @@ else {
 	</div>
 	
 	<div class="brand" style="background-image: url('img/fondo.jpeg')">
-		<h1 style="color:#ffff; margin-top:5%;"><b>OLIMPUS</b></h1>
+		<h3 style="color:#ffff; margin-top:5%;"><b>OLIMPUS SISTEMA CONTABLE</b></h3>
 	</div>
 
 
