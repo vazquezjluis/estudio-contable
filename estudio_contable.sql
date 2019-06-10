@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 05-06-2019 a las 08:49:36
+-- Tiempo de generación: 10-06-2019 a las 13:02:07
 -- Versión del servidor: 5.6.43-cll-lve
 -- Versión de PHP: 7.2.7
 
@@ -81,15 +81,17 @@ CREATE TABLE `clientes` (
   `honorario` decimal(10,2) DEFAULT '0.00',
   `usuario` varchar(50) DEFAULT NULL,
   `clave` varchar(10) DEFAULT NULL,
-  `condicion_iva` varchar(50) NOT NULL DEFAULT ''
+  `condicion_iva` varchar(50) NOT NULL DEFAULT '',
+  `actividad` varchar(200) NOT NULL,
+  `f_vencimiento_iibb` date NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `clientes`
 --
 
-INSERT INTO `clientes` (`id_cliente`, `nombre_cliente`, `telefono_cliente`, `email_cliente`, `direccion_cliente`, `status_cliente`, `date_added`, `cuit`, `categoria`, `honorario`, `usuario`, `clave`, `condicion_iva`) VALUES
-(28, 'HORACIO ROMERO', '', '', '', 1, '2019-06-01 00:00:00', '20149124382', 'A', '2000.00', 'HROMERO', 'HORACIO01', 'Monotributo');
+INSERT INTO `clientes` (`id_cliente`, `nombre_cliente`, `telefono_cliente`, `email_cliente`, `direccion_cliente`, `status_cliente`, `date_added`, `cuit`, `categoria`, `honorario`, `usuario`, `clave`, `condicion_iva`, `actividad`, `f_vencimiento_iibb`) VALUES
+(28, 'HORACIO ROMERO', '', 'jlvazquez@audired.com.ar', '', 1, '2019-06-01 00:00:00', '20149124382', 'A', '2000.00', 'HROMERO', 'HORACIO01', 'Monotributo', 'Venta de Cosas Muebles', '2019-06-28');
 
 -- --------------------------------------------------------
 
@@ -140,7 +142,13 @@ CREATE TABLE `mensajes` (
 INSERT INTO `mensajes` (`id_mensaje`, `destino`, `cliente`, `visto`, `mensaje`, `prioridad`, `estado`, `fecha`, `asunto`) VALUES
 (23, 'contador', 28, '0', 'Che una duda, no es un poco caro el servicio?? EstÃ¡ un poco alto tus honorarios, no me estafÃ©s he !! Pedazo de garca', 0, 1, '2019-06-05 11:50:23', 'Sobre Honorarios'),
 (24, 'cliente', 28, '2019-06-05 02:06:39', 'comunicarse con el contador\r\n', 3, 1, '2019-06-05 02:06:28', 'recategorizacion '),
-(25, 'contador', 28, '0', 'TE LLAME Y NO CONTESTAS\r\n', 0, 1, '2019-06-05 02:12:57', 'recategorizacion ');
+(25, 'contador', 28, '0', 'TE LLAME Y NO CONTESTAS\r\n', 0, 1, '2019-06-05 02:12:57', 'recategorizacion '),
+(26, 'cliente', 28, '2019-06-05 07:06:30', 'QUE CARA DE VERGA EL PROGRAMADOR\r\n', 3, 1, '2019-06-05 07:11:50', 'programador'),
+(27, 'contador', 28, '0', 'Gracias contador', 0, 1, '2019-06-06 10:15:25', 'Gracias'),
+(28, 'cliente', 28, '2019-06-07 12:06:37', '...', 1, 1, '2019-06-07 12:25:53', 'Nuevo documento de Liquidacion de ingresos Brutos disponible'),
+(29, 'cliente', 28, '2019-06-07 12:06:37', '...', 1, 1, '2019-06-07 12:26:33', 'Nuevo documento de Liquidacion de ingresos Brutos disponible'),
+(30, 'cliente', 28, '2019-06-07 12:06:28', '...', 1, 1, '2019-06-07 12:30:37', 'Nuevo documento de Liquidacion de ingresos Brutos disponible'),
+(31, 'cliente', 28, '2019-06-07 12:06:28', 'Liquidacion nueva', 1, 1, '2019-06-07 12:31:31', 'Nuevo documento de Liquidacion de ingresos Brutos disponible');
 
 -- --------------------------------------------------------
 
@@ -176,9 +184,9 @@ INSERT INTO `movimientos` (`id`, `movimiento`, `cliente`, `anio`, `enero`, `febr
 (18, 'egresos', 26, '2019', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00'),
 (19, 'ingresos', 27, '2019', '20000.00', '30000.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00'),
 (20, 'egresos', 27, '2019', '60000.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00'),
-(21, 'ingresos', 28, '2019', '10.00', '10.00', '10.00', '10.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00'),
+(21, 'ingresos', 28, '2019', '10.00', '10.00', '10.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00'),
 (22, 'egresos', 28, '2019', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00'),
-(23, 'ingresos', 28, '2018', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '30000.00', '20000.00', '15000.00', '1.00', '10.00', '10.00'),
+(23, 'ingresos', 28, '2018', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '30000.00', '20000.00', '15000.00', '10.00', '10.00', '10.00'),
 (24, 'egresos', 28, '2018', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00');
 
 -- --------------------------------------------------------
@@ -204,6 +212,45 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`user_id`, `firstname`, `lastname`, `user_name`, `user_password_hash`, `user_email`, `date_added`) VALUES
 (1, 'Cristian', 'Schumacher', 'cristian', '$2y$10$XqfsgqNXA54j15eNK6BeY.Ke1oUhFJJ0I7Orj10DbccRSCMcLNEze', 'nosequeoner@asdasd.com', '2016-05-21 15:06:00'),
 (2, 'Neo', 'Programador', 'admin', '$2y$10$safORw88BOQzeYanN62Ca.63nwf9DH6VZiuJthFlk6mbWmfhUpuUK', 'vazquezjluis@yahoo.com', '2019-05-21 19:20:04');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `vencimientosiibblocales`
+--
+
+CREATE TABLE `vencimientosiibblocales` (
+  `id` int(11) NOT NULL,
+  `TerminacionCUIT` varchar(255) DEFAULT NULL,
+  `Anticipo1` varchar(255) DEFAULT NULL,
+  `Anticipo2` varchar(255) DEFAULT NULL,
+  `Anticipo3` varchar(255) DEFAULT NULL,
+  `Anticipo4` varchar(255) DEFAULT NULL,
+  `Anticipo5` varchar(255) DEFAULT NULL,
+  `Anticipo6` varchar(255) DEFAULT NULL,
+  `Anticipo7` varchar(255) DEFAULT NULL,
+  `Anticipo8` varchar(255) DEFAULT NULL,
+  `Anticipo9` varchar(255) DEFAULT NULL,
+  `Anticipo10` varchar(255) DEFAULT NULL,
+  `Anticipo11` varchar(255) DEFAULT NULL,
+  `Anticipo12` varchar(255) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `vencimientosiibblocales`
+--
+
+INSERT INTO `vencimientosiibblocales` (`id`, `TerminacionCUIT`, `Anticipo1`, `Anticipo2`, `Anticipo3`, `Anticipo4`, `Anticipo5`, `Anticipo6`, `Anticipo7`, `Anticipo8`, `Anticipo9`, `Anticipo10`, `Anticipo11`, `Anticipo12`) VALUES
+(1, '0', '18/02/2019', '18/03/2019', '22/04/2019', '20/05/2019', '18/06/2019', '18/07/2019', '20/08/2019', '18/09/2019', '21/10/2019', '19/11/2019', '18/12/2019', '20/01/2020'),
+(2, '1', '19/02/2019', '19/03/2019', '23/04/2019', '21/05/2019', '19/06/2019', '19/07/2019', '21/08/2019', '19/09/2019', '22/10/2019', '20/11/2019', '19/12/2019', '21/01/2020'),
+(3, '2', '20/02/2019', '20/03/2019', '24/04/2019', '22/05/2019', '21/06/2019', '22/07/2019', '22/08/2019', '20/09/2019', '23/10/2019', '21/11/2019', '20/12/2019', '22/01/2020'),
+(4, '3', '21/02/2019', '21/03/2019', '25/04/2019', '23/05/2019', '24/06/2019', '23/07/2019', '23/08/2019', '23/09/2019', '24/10/2019', '22/11/2019', '23/12/2019', '23/01/2020'),
+(5, '4', '22/02/2019', '22/03/2019', '26/04/2019', '24/05/2019', '25/06/2019', '24/07/2019', '26/08/2019', '24/09/2019', '25/10/2019', '25/11/2019', '24/12/2019', '24/01/2020'),
+(6, '5', '25/02/2019', '25/03/2019', '29/04/2019', '27/05/2019', '26/06/2019', '25/07/2019', '27/08/2019', '25/09/2019', '28/10/2019', '26/11/2019', '26/12/2019', '27/01/2020'),
+(7, '6', '26/02/2019', '26/03/2019', '30/04/2019', '28/05/2019', '27/06/2019', '26/07/2019', '28/08/2019', '26/09/2019', '29/10/2019', '27/11/2019', '27/12/2019', '28/01/2020'),
+(8, '7', '27/02/2019', '27/03/2019', '02/05/2019', '29/05/2019', '28/06/2019', '29/07/2019', '29/08/2019', '27/09/2019', '30/10/2019', '28/11/2019', '30/12/2019', '29/01/2020'),
+(9, '8', '28/02/2019', '28/03/2019', '03/05/2019', '30/05/2019', '01/07/2019', '30/07/2019', '30/08/2019', '30/09/2019', '30/10/2019', '29/11/2019', '02/01/2019', '30/01/2020'),
+(10, '9', '01/03/2019', '29/03/2019', '06/05/2019', '31/05/2019', '02/07/2019', '31/07/2019', '02/09/2019', '01/10/2019', '01/11/2019', '02/12/2019', '03/01/2019', '31/01/2020');
 
 --
 -- Índices para tablas volcadas
@@ -249,6 +296,12 @@ ALTER TABLE `users`
   ADD UNIQUE KEY `user_email` (`user_email`);
 
 --
+-- Indices de la tabla `vencimientosiibblocales`
+--
+ALTER TABLE `vencimientosiibblocales`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT de las tablas volcadas
 --
 
@@ -268,13 +321,13 @@ ALTER TABLE `clientes`
 -- AUTO_INCREMENT de la tabla `documentos`
 --
 ALTER TABLE `documentos`
-  MODIFY `id_documento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_documento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de la tabla `mensajes`
 --
 ALTER TABLE `mensajes`
-  MODIFY `id_mensaje` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id_mensaje` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT de la tabla `movimientos`
@@ -287,6 +340,12 @@ ALTER TABLE `movimientos`
 --
 ALTER TABLE `users`
   MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'auto incrementing user_id of each user, unique index', AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT de la tabla `vencimientosiibblocales`
+--
+ALTER TABLE `vencimientosiibblocales`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
