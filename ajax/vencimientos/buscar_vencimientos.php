@@ -38,7 +38,7 @@
 			
 		}
 		
-		$sWhere.=" order by clientes.id_cliente asc";
+		$sWhere.=" order by vencimiento DESC";
 		include '../pagination.php'; //include pagination file
 		//pagination variables
 		$page = (isset($_REQUEST['page']) && !empty($_REQUEST['page']))?$_REQUEST['page']:1;
@@ -47,17 +47,43 @@
 		$offset = ($page - 1) * $per_page;
 		//Count the total number of row in your table*/
 
-        $count_query   = mysqli_query($con, "SELECT count(*) AS numrows FROM $sTable  $sWhere");
+        //$count_query   = mysqli_query($con, "SELECT count(*) AS numrows FROM $sTable  $sWhere");
         
-		$row= mysqli_fetch_array($count_query);
-		$numrows = $row['numrows'];
-		$total_pages = ceil($numrows/$per_page);
+		//$row= mysqli_fetch_array($count_query);
+		//$numrows = $row['numrows'];
+		//$total_pages = ceil($numrows/$per_page);
 		$reload = './categorias.php';
 		//main query to fetch the data
-		$sql="SELECT nombre_cliente, cuit, vl.Anticipo".substr(date('m'), -1)." as vencimientosiibblocales FROM  ".$sTable.$sWhere." LIMIT ".$offset.",".$per_page;
+		//$sql="SELECT nombre_cliente, cuit, vl.Anticipo".substr(date('m'), -1)." as vencimientosiibblocales FROM  ".$sTable.$sWhere." LIMIT ".$offset.",".$per_page;
+
+		$sql = "SELECT
+			nombre_cliente,
+			cuit,
+			STR_TO_DATE(vl.Anticipo".substr(date('m'), -1).",'%d/%m/%Y') AS vencimiento, 'IIBB' as tipo
+		FROM
+			clientes
+		INNER JOIN vencimientosiibblocales AS vl ON vl.TerminacionCUIT = SUBSTRING(cuit ,- 1)
+
+		UNION
+
+		SELECT
+			nombre_cliente,
+			cuit,
+			fm.fecha AS vencimiento, 'Monotributo' as tipo
+		FROM
+			clientes
+			INNER JOIN (select * from fechamonotributo ORDER BY id_fechamonotributo DESC LIMIT 1 )AS fm
+
+
+
+		ORDER BY
+			vencimiento ASC";
+
+
+		//var_dump($sql);
 		$query = mysqli_query($con, $sql);
 		//loop through fetched data
-		if ($numrows>0){
+		//if ($numrows>0){
 			echo mysqli_error($con);
 			?>
 			<div class="table-responsive">
@@ -66,8 +92,8 @@
 					<!-- <th>#</th> -->
 					<th>Cliente</th>
 					<th>Cuit</th>
-					<th>Vencimiento IIBB</th>
-					<!-- <th>Tipo</th> -->
+					<th>Vencimiento</th>
+					<th>Tipo</th>
 				</tr>
 				<?php
 				while ($row=mysqli_fetch_array($query)){
@@ -75,8 +101,13 @@
 					<tr>
 						<td><?php echo $row['nombre_cliente']; ?></td>
 						<td><?php echo $row['cuit']; ?></td>
-						<td><?php echo $row['vencimientosiibblocales']; ?></td>
-						<!-- <td><?php //echo $row['tipo']; ?></td> -->
+						<td><?php
+						
+						$date=date_create($row['vencimiento']);
+						echo date_format($date,"d/m/Y");
+						
+						 ?></td>
+						<td><?php echo $row['tipo']; ?></td>
 						
 					</tr>
 					<?php
@@ -84,12 +115,10 @@
 				?>
 			  </table>
               <div class="pull-right">
-              <?php
-					 echo paginate($reload, $page, $total_pages, $adjacents);
-					?>
+              <a href="ajax/vencimientos/excel.php" class="btn btn-success">Descargar Excel <span class="glyphicon glyphicon-download-alt "></span></a>
               </div>
 			</div>
 			<?php
-		}
+		//}
 	}
 ?>

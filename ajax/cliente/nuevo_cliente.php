@@ -22,24 +22,35 @@
 		//$estado=intval($_POST['estado']);
 		$date_added=mysqli_real_escape_string($con,(strip_tags($_POST["date_added"],ENT_QUOTES)));
 		
-		$sql="INSERT INTO clientes (nombre_cliente, 
-		telefono_cliente,
-		 email_cliente, 
-		 direccion_cliente, 
-		 status_cliente,
-		  date_added, 
-		  categoria, 
-		  cuit, usuario,
-		   clave, 
-		   honorario,condicion_iva,actividad) VALUES ('$nombre',
-		   '$telefono',
-		   '$email',
-		   '$direccion',
-		   1,
-		   '$date_added',
-		   '$categoria',
-		   '$cuit',
-		   '$usuario','$clave','$honorario','$condicion_iva', '$actividad')";
+		$sql="INSERT INTO clientes (
+			nombre_cliente, 
+			telefono_cliente,
+		 	email_cliente, 
+		 	direccion_cliente, 
+		 	status_cliente,
+		  	date_added, 
+		  	categoria, 
+		  	cuit, 
+			usuario,
+		   	clave, 
+		   	honorario,
+			condicion_iva,
+			actividad) VALUES (
+				'$nombre',
+		   		'$telefono',
+		   		'$email',
+		   		'$direccion',
+		   		1,
+		   		'$date_added',
+		   		'$categoria',
+		   		'$cuit',
+		   		'$usuario',
+				'$clave',
+				'$honorario',
+				'$condicion_iva', 
+				'$actividad'
+				)";
+
 		$query_new_insert = mysqli_query($con,$sql);
 
 		$sql2="SELECT max(clientes.id_cliente) as id FROM clientes LIMIT 1";

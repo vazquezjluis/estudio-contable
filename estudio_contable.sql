@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 12-06-2019 a las 07:10:19
+-- Tiempo de generación: 10-06-2019 a las 13:02:07
 -- Versión del servidor: 5.6.43-cll-lve
 -- Versión de PHP: 7.2.7
 
@@ -82,15 +82,16 @@ CREATE TABLE `clientes` (
   `usuario` varchar(50) DEFAULT NULL,
   `clave` varchar(10) DEFAULT NULL,
   `condicion_iva` varchar(50) NOT NULL DEFAULT '',
-  `actividad` varchar(200) NOT NULL
+  `actividad` varchar(200) NOT NULL,
+  `f_vencimiento_iibb` date NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `clientes`
 --
 
-INSERT INTO `clientes` (`id_cliente`, `nombre_cliente`, `telefono_cliente`, `email_cliente`, `direccion_cliente`, `status_cliente`, `date_added`, `cuit`, `categoria`, `honorario`, `usuario`, `clave`, `condicion_iva`, `actividad`) VALUES
-(28, 'HORACIO ROMERO', '', 'jlvazquez@audired.com.ar', '', 1, '2019-06-01 00:00:00', '20149124382', 'C', '1000.00', 'HROMERO', 'HORACIO01', 'Monotributo', 'Locaciones y/o prestaciones de servicios');
+INSERT INTO `clientes` (`id_cliente`, `nombre_cliente`, `telefono_cliente`, `email_cliente`, `direccion_cliente`, `status_cliente`, `date_added`, `cuit`, `categoria`, `honorario`, `usuario`, `clave`, `condicion_iva`, `actividad`, `f_vencimiento_iibb`) VALUES
+(28, 'HORACIO ROMERO', '', 'jlvazquez@audired.com.ar', '', 1, '2019-06-01 00:00:00', '20149124382', 'A', '2000.00', 'HROMERO', 'HORACIO01', 'Monotributo', 'Venta de Cosas Muebles', '2019-06-28');
 
 -- --------------------------------------------------------
 
@@ -114,28 +115,7 @@ INSERT INTO `documentos` (`id_documento`, `cliente`, `tipo`, `ruta`, `fecha`) VA
 (2, 28, 3, 'documentos/3_28.pdf', '2019-06-05'),
 (3, 28, 4, 'documentos/4_28.pdf', '2019-06-05'),
 (4, 28, 1, 'documentos/1_28.pdf', '2019-06-05'),
-(5, 28, 2, 'documentos/2_28.pdf', '2019-06-05'),
-(10, 28, 5, 'documentos/5_28.pdf', '2019-06-12');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `fechamonotributo`
---
-
-CREATE TABLE `fechamonotributo` (
-  `id_fechaMonotributo` int(11) NOT NULL,
-  `fecha` date DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
---
--- Volcado de datos para la tabla `fechamonotributo`
---
-
-INSERT INTO `fechamonotributo` (`id_fechaMonotributo`, `fecha`) VALUES
-(1, '2019-06-11'),
-(2, '2019-06-15'),
-(3, '2019-06-20');
+(5, 28, 2, 'documentos/2_28.pdf', '2019-06-05');
 
 -- --------------------------------------------------------
 
@@ -168,8 +148,7 @@ INSERT INTO `mensajes` (`id_mensaje`, `destino`, `cliente`, `visto`, `mensaje`, 
 (28, 'cliente', 28, '2019-06-07 12:06:37', '...', 1, 1, '2019-06-07 12:25:53', 'Nuevo documento de Liquidacion de ingresos Brutos disponible'),
 (29, 'cliente', 28, '2019-06-07 12:06:37', '...', 1, 1, '2019-06-07 12:26:33', 'Nuevo documento de Liquidacion de ingresos Brutos disponible'),
 (30, 'cliente', 28, '2019-06-07 12:06:28', '...', 1, 1, '2019-06-07 12:30:37', 'Nuevo documento de Liquidacion de ingresos Brutos disponible'),
-(31, 'cliente', 28, '2019-06-07 12:06:28', 'Liquidacion nueva', 1, 1, '2019-06-07 12:31:31', 'Nuevo documento de Liquidacion de ingresos Brutos disponible'),
-(32, 'cliente', 28, '2019-06-12 01:06:02', 'Liquidacion nueva', 1, 1, '2019-06-12 01:49:58', 'Nuevo documento de Liquidacion de ingresos Brutos disponible');
+(31, 'cliente', 28, '2019-06-07 12:06:28', 'Liquidacion nueva', 1, 1, '2019-06-07 12:31:31', 'Nuevo documento de Liquidacion de ingresos Brutos disponible');
 
 -- --------------------------------------------------------
 
@@ -205,7 +184,7 @@ INSERT INTO `movimientos` (`id`, `movimiento`, `cliente`, `anio`, `enero`, `febr
 (18, 'egresos', 26, '2019', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00'),
 (19, 'ingresos', 27, '2019', '20000.00', '30000.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00'),
 (20, 'egresos', 27, '2019', '60000.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00'),
-(21, 'ingresos', 28, '2019', '10.00', '10.00', '10.00', '230000.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00'),
+(21, 'ingresos', 28, '2019', '10.00', '10.00', '10.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00'),
 (22, 'egresos', 28, '2019', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00'),
 (23, 'ingresos', 28, '2018', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '30000.00', '20000.00', '15000.00', '10.00', '10.00', '10.00'),
 (24, 'egresos', 28, '2018', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00');
@@ -297,12 +276,6 @@ ALTER TABLE `documentos`
   ADD PRIMARY KEY (`id_documento`);
 
 --
--- Indices de la tabla `fechamonotributo`
---
-ALTER TABLE `fechamonotributo`
-  ADD PRIMARY KEY (`id_fechaMonotributo`);
-
---
 -- Indices de la tabla `mensajes`
 --
 ALTER TABLE `mensajes`
@@ -348,19 +321,13 @@ ALTER TABLE `clientes`
 -- AUTO_INCREMENT de la tabla `documentos`
 --
 ALTER TABLE `documentos`
-  MODIFY `id_documento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
-
---
--- AUTO_INCREMENT de la tabla `fechamonotributo`
---
-ALTER TABLE `fechamonotributo`
-  MODIFY `id_fechaMonotributo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_documento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de la tabla `mensajes`
 --
 ALTER TABLE `mensajes`
-  MODIFY `id_mensaje` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `id_mensaje` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT de la tabla `movimientos`

@@ -38,7 +38,7 @@
 			
 		}
 		
-		$sWhere.=" order by vencimientosiibblocales.id asc";
+		$sWhere.="  order by vencimientosiibblocales.id asc ";
 		include '../pagination.php'; //include pagination file
 		//pagination variables
 		$page = (isset($_REQUEST['page']) && !empty($_REQUEST['page']))?$_REQUEST['page']:1;
@@ -53,7 +53,8 @@
 		$total_pages = ceil($numrows/$per_page);
 		$reload = './VencimientosIIBBlocales.php';
 		//main query to fetch the data
-		$sql="SELECT * FROM  $sTable $sWhere LIMIT $offset,$per_page";
+		//$sql="SELECT * FROM  $sTable $sWhere LIMIT $offset,$per_page";
+		$sql="SELECT * FROM  $sTable $sWhere LIMIT 13";
 
 
 
@@ -108,7 +109,7 @@
 			  </table>
               <div class="pull-right">
               <?php
-					 echo paginate($reload, $page, $total_pages, $adjacents);
+					 //echo paginate($reload, $page, $total_pages, $adjacents);
 					?>
               </div>
 			</div>

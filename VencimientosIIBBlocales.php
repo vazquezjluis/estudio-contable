@@ -98,7 +98,7 @@
                                                                 t_pres_serv,
                                                                 t_ven_cos_muebles)  VALUES ('";
                                                             foreach ($valor as $campo2 => $valor2){
-                                                                $campo2 == "t_ven_cos_muebles" ? $sql.= $valor2."');" : $sql.= $valor2."','";
+                                                                $campo2 == "Anticipo12" ? $sql.= $valor2."');" : $sql.= $valor2."','";
                                                             }
                                     
                                                             $result = mysqli_query($con,$sql);
@@ -108,7 +108,7 @@
                         
                                                     }	
                                                 echo  "<script> alert('Archivo miportado con éxito.')</script>";	
-                                                header("Location: categorias.php");
+                                                header("Location: VencimientosIIBBlocales.php");
                                     }
                                 }
                                 
@@ -134,7 +134,7 @@
                     <div class="panel-heading">
                     <div class="btn-group pull-right">
                             
-                            <!-- <form class="form-inline" name="importa" method="post" action="" enctype="multipart/form-data" >
+                             <form class="form-inline" name="importa" method="post" action="" enctype="multipart/form-data" >
                         
                                 <div class="form-group">
                                     <input type="file" class="filestyle" data-buttonText="Seleccione archivo " name="excel" required>
@@ -143,7 +143,7 @@
                         
                                 <input type="hidden" value="upload" name="action" />
     
-                            </form> -->
+                            </form> 
                             <!-- <a  href="nueva_categoria.php" class="btn btn-info"><span class="glyphicon glyphicon-plus" ></span> Nueva Factura</a> -->
                         </div>
                         <h4> IIBB Contribuyentes locales </h4>

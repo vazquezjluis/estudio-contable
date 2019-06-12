@@ -119,7 +119,19 @@
                 
         // }
     
-    
+        if (isset($_POST['enviar']) and $_POST['fecha']!='' and $_POST['fecha']!=null){
+            $sql_insert_fecha = "INSERT INTO fechamonotributo (fecha) values ('".$_POST['fecha']."')";
+            
+
+            mysqli_query($con,$sql_insert_fecha);
+            header("Location: vencimientos.php");
+        }
+
+        $sql_ven_monotributo = "SELECT * FROM fechamonotributo order by id_fechamonotributo DESC limit 1";
+        $fecha = mysqli_query($con,$sql_ven_monotributo);
+        $fecha_monotributo= mysqli_fetch_array($fecha);
+        
+
     
     ?>
     <!DOCTYPE html>
@@ -134,16 +146,16 @@
                     <div class="panel-heading">
                     <div class="btn-group pull-right">
                             
-                            <!-- <form class="form-inline" name="importa" method="post" action="" enctype="multipart/form-data" >
+                             <form class="form-inline" name="fecha" method="post" action="" enctype="multipart/form-data" >
                         
                                 <div class="form-group">
-                                    <input type="file" class="filestyle" data-buttonText="Seleccione archivo " name="excel" required>
+                                <label> Vencimiento de Monotributo:</label>
+                                    <input type="date" name="fecha" value="<?php echo $fecha_monotributo['fecha'];?>"/>
                                 </div>
-                                <input class="btn btn-success btn-file" type='submit' name='enviar'  value="Importar .xlsx"  />
+                                <input class="btn btn-primary btn-file" type='submit' name='enviar'  value="Actualizar"  />
                         
-                                <input type="hidden" value="upload" name="action" />
     
-                            </form> -->
+                            </form> 
                             <!-- <a  href="nueva_categoria.php" class="btn btn-info"><span class="glyphicon glyphicon-plus" ></span> Nueva Factura</a> -->
                         </div>
                         <h4> Clientes </h4>
