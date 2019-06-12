@@ -30,7 +30,8 @@ function getMontoAPagar($categoria){
 			$sql = "SELECT * FROM categorias WHERE categoria = '".trim($categoria)."'";
 			$query=mysqli_query($con, $sql);
 			$row= mysqli_fetch_array($query);
-			if ($row['actividad']=='Venta de Cosas Muebles'){
+			
+			if ($_SESSION['cliente_actividad']=='Venta de Cosas Muebles'){
 				$monto_a_pagar = $row['t_ven_cos_muebles'];
 			}else{
 				//si la categoria es mayor a la H entonces ese es el limite H
@@ -49,6 +50,46 @@ function getMontoAPagar($categoria){
 		}
 		return $monto_a_pagar;
 }
+
+/** */
+function getVencimientos ($cliente = ''){
+ 	global $con;
+	 $mes = (int)substr(date('m'), -1)-1;
+	 $sql = "SELECT
+		 nombre_cliente,
+		 cuit,
+		 STR_TO_DATE(vl.Anticipo".$mes.",'%d/%m/%Y') AS vencimiento, 'IIBB' as tipo
+	 FROM
+		 clientes
+	 INNER JOIN vencimientosiibblocales AS vl ON vl.TerminacionCUIT = SUBSTRING(cuit ,- 1) ";
+	 if ($cliente !=''){
+		$sql.=" WHERE clientes.id_cliente = ".$cliente;
+	 }
+
+	 $sql.=" UNION
+
+	 SELECT
+		 nombre_cliente,
+		 cuit,
+		 fm.fecha AS vencimiento, 'Monotributo' as tipo
+	 FROM
+		 clientes
+		 INNER JOIN (select * from fechamonotributo ORDER BY id_fechamonotributo DESC LIMIT 1 )AS fm ";
+	
+	if ($cliente !=''){
+		$sql.=" WHERE clientes.id_cliente = ".$cliente;
+	}
+
+	$sql.="
+	 ORDER BY
+		 vencimiento ASC";
+
+	$query=mysqli_query($con,$sql);	
+	
+	return $query;
+}
+
+
 /**  */
 function getFacturacionActual($id_cliente){
 	global $con;

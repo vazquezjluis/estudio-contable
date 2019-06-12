@@ -38,6 +38,21 @@ $monto_limite_categoria   = monto_limite_categoria(trim($_SESSION['cliente_categ
 $monto_a_facturar_por_mes = ( $monto_limite_categoria - $facturacion_actual[4]['total_ingreso'] ) / $mes_incompleto;
 $monto_a_pagar_sig_cate   = getMontoAPagar($siguiente_categoria);
  
+
+$vencimientos             = getVencimientos($_SESSION['cliente_id']);
+while($row = mysqli_fetch_array($vencimientos)){
+  if ($row['tipo']=="Monotributo"){
+    $date=date_create($row['vencimiento']);
+		$v_monotributo  =date_format($date,"d/m/Y");
+    
+  }else if($row['tipo']=="IIBB"){
+    $date=date_create($row['vencimiento']);
+		$v_iibb         =date_format($date,"d/m/Y");
+  }
+}
+
+
+
 // echo '<pre>';
 // var_dump($mes_incompleto);
 // var_dump($monto_limite_categoria);
@@ -166,9 +181,25 @@ $class = array(
                     <span class="badge">$ <?php echo " ".number_format($monto_a_pagar_sig_cate, 2,'.',' ');?></span>
                     Monto a pagar siguiente Categoria (<?= $siguiente_categoria;?>)
                 </li>
-                <li class="list-group-item" style="padding:1%;">
+                <li class="list-group-item " style="padding:1%;">
+                  <br>
                   <div class="row" style="text-align:center;">
-                    <h3 style="margin-top:0px;margin-bottom:0px;">Constancias</h3>
+                    <h4 style="margin-top:0px;margin-bottom:0px;">Vencimientos</h4>
+                  </div>
+                  <table class="table table-bordered">
+                      <tr>
+                        <td>Monotributo</td>
+                        <td><?php echo $v_monotributo;?></td>
+                      </tr>
+                      <tr>
+                        <td>IIBB</td>  
+                        <td><?php echo $v_iibb;?></td>
+                      </tr>
+                  </table>   
+                </li>
+                <li class="list-group-item" style="padding:1%;"><br>
+                  <div class="row" style="text-align:center;">
+                    <h4 style="margin-top:0px;margin-bottom:0px;">Constancias</h4>
                   </div>  
                     
                       <ul>
@@ -197,7 +228,7 @@ $class = array(
                       <?php echo $btn_liqIIBB;?>
                 </li>
             </ul>
-            <h4>Honararios $<?php echo $_SESSION['cliente_honorario'];?></h4>
+            <h4>Honorarios $<?php echo $_SESSION['cliente_honorario'];?></h4>
           </div>
           <div class="col-md-6">
             <div class="row">

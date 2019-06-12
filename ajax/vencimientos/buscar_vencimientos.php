@@ -55,11 +55,11 @@
 		$reload = './categorias.php';
 		//main query to fetch the data
 		//$sql="SELECT nombre_cliente, cuit, vl.Anticipo".substr(date('m'), -1)." as vencimientosiibblocales FROM  ".$sTable.$sWhere." LIMIT ".$offset.",".$per_page;
-
+		$mes = (int)substr(date('m'), -1)-1;
 		$sql = "SELECT
 			nombre_cliente,
 			cuit,
-			STR_TO_DATE(vl.Anticipo".substr(date('m'), -1).",'%d/%m/%Y') AS vencimiento, 'IIBB' as tipo
+			STR_TO_DATE(vl.Anticipo".$mes.",'%d/%m/%Y') AS vencimiento, 'IIBB' as tipo
 		FROM
 			clientes
 		INNER JOIN vencimientosiibblocales AS vl ON vl.TerminacionCUIT = SUBSTRING(cuit ,- 1)

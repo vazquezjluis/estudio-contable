@@ -9,11 +9,11 @@ header('Content-Disposition: attachment; filename=vencimientos.xls');
 
 
 /*Extraer datos de MYSQL*/
-	
+$mes = (int)substr(date('m'), -1)-1;
 	$sql="SELECT
                 nombre_cliente,
                 cuit,
-                STR_TO_DATE(vl.Anticipo".substr(date('m'), -1).",'%d/%m/%Y') AS vencimiento, 'IIBB' as tipo
+                STR_TO_DATE(vl.Anticipo".$mes.",'%d/%m/%Y') AS vencimiento, 'IIBB' as tipo
             FROM
                 clientes
             INNER JOIN vencimientosiibblocales AS vl ON vl.TerminacionCUIT = SUBSTRING(cuit ,- 1)
