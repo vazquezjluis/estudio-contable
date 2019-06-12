@@ -37,7 +37,9 @@ $mes_incompleto           = mesIncompleto($facturacion_actual);//meses que resta
 $monto_limite_categoria   = monto_limite_categoria(trim($_SESSION['cliente_categoria']));
 $monto_a_facturar_por_mes = ( $monto_limite_categoria - $facturacion_actual[4]['total_ingreso'] ) / $mes_incompleto;
 $monto_a_pagar_sig_cate   = getMontoAPagar($siguiente_categoria);
- 
+
+
+
 
 $vencimientos             = getVencimientos($_SESSION['cliente_id']);
 while($row = mysqli_fetch_array($vencimientos)){
@@ -174,7 +176,17 @@ $class = array(
                     Facturacion Actual
                 </li>
                 <li class="list-group-item sm " style="padding:1%;">
-                    <span class="badge">$ <?php echo " ".number_format($monto_a_facturar_por_mes, 2,'.',' ');?></span>
+                     <?php 
+                    if ((int)$monto_a_facturar_por_mes< 0){
+                       echo "<span class='badge' style='background-color:red;'><b>Sobrepaso el limite, comunicarse con el contador!</b>";
+                    }else{
+                      echo " <span class='badge' >$ ".number_format($monto_a_facturar_por_mes, 2,'.',' ');
+                    }
+                    echo "</span>";
+                    ?>
+                    
+                    
+                    
                     Monto a facturar por mes
                 </li>
                 <li class="list-group-item " style="padding:1%;">
