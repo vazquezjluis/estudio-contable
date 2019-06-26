@@ -15,5 +15,3 @@ Instalación en windows (servidor local)
 5- Configurar los datos de conexión a la base de datos editando el archivo de configuración que se encuentra en la siguiente ruta: estudio_contable/config/db.php
 
 6- Vista web: http://localhost/estudio-contable/
-
-7- Datos de acceso por defec
