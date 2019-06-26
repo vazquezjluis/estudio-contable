@@ -13,5 +13,4 @@ Instalación en windows (servidor local)
 4- Importar las tablas de la base de datos para ello vamos a buscar el archivo "estudio_contable.sql" en el directorio root de nuestro sistema, una vez localizado procedemos a hacer la importacion de los datos desde PHPMyAdmin
 
 5- Configurar los datos de conexión a la base de datos editando el archivo de configuración que se encuentra en la siguiente ruta: estudio_contable/config/db.php
-
-6- Vista web: http://localhost/estudio-contable/
+Vista web: http://localhost/estudio-contable/
