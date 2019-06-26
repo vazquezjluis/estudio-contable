@@ -16,6 +16,4 @@ Instalación en windows (servidor local)
 
 6- Vista web: http://localhost/estudio-contable/
 
-7- Datos de acceso por defecto: usuario: admin y contraseña: admin
-
-Para más información visita: https://www.control-app.com
+7- Datos de acceso por defec
